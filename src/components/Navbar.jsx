@@ -87,17 +87,17 @@ export default function Navbar() {
             </ul>
           </div>
           <div className="right-section">
-            <button className="btn fs-5">
-              <i className="fa-regular fa-circle-user"></i>
+            <button className="btn icon-button fs-5">
+              <i className="fa-regular fa-circle-user icon"></i>
             </button>
-            <button className="btn fs-5">
-              <i class="fa-solid fa-magnifying-glass"></i>
+            <button className="btn icon-button fs-5">
+              <i className="fa-solid fa-magnifying-glass icon"></i>
             </button>
-            <button className="btn fs-5">
-              <i class="fa-solid fa-cart-shopping"></i>
+            <button className="btn icon-button fs-5">
+              <i className="fa-solid fa-cart-shopping icon"></i>
             </button>
-            <button className="btn fs-5 ">
-              <i class="fa-solid fa-phone"></i>
+            <button className="btn icon-button fs-5">
+              <i className="fa-solid fa-phone icon"></i>
             </button>
           </div>
         </div>
