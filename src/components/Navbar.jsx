@@ -25,7 +25,7 @@ export default function Navbar() {
             <ul className="navbar-nav ms-auto font-weight-bold d-flex flex-row gap-4 fs-5  text-black">
               <li className="nav-item">
                 <NavLink
-                  to="/"
+                  to="/shop"
                   className={({ isActive }) =>
                     isActive
                       ? "nav-link active text-warning"
