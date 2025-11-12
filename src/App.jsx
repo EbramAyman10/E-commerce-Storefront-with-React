@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-
 import HomePage from "./pages/Home/HomePage";
-import NavbarComponent from "./components/Navbar";
-
+import Navbar from "./components/Navbar";
+import background from "./assets/background.jpg";
 function App() {
   return (
     <>
-      <NavbarComponent />
+      <img src={background} alt="Background" className="img-fluid"/>
+      <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
       </Routes>
