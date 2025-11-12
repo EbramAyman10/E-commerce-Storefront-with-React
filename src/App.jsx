@@ -5,7 +5,6 @@ import background from "./assets/background.jpg";
 function App() {
   return (
     <>
-      <img src={background} alt="Background" className="img-fluid"/>
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
