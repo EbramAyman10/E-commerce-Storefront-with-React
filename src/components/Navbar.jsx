@@ -86,20 +86,20 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <div className="right-section">
-            <button className="btn icon-button fs-5">
-              <i className="fa-regular fa-circle-user icon"></i>
-            </button>
-            <button className="btn icon-button fs-5">
-              <i className="fa-solid fa-magnifying-glass icon"></i>
-            </button>
-            <button className="btn icon-button fs-5">
-              <i className="fa-solid fa-cart-shopping icon"></i>
-            </button>
-            <button className="btn icon-button fs-5">
-              <i className="fa-solid fa-phone icon"></i>
-            </button>
-          </div>
+        </div>
+        <div className="right-section">
+          <button className="btn icon-button fs-5">
+            <i className="fa-regular fa-circle-user icon"></i>
+          </button>
+          <button className="btn icon-button fs-5">
+            <i className="fa-solid fa-magnifying-glass icon"></i>
+          </button>
+          <button className="btn icon-button fs-5">
+            <i className="fa-solid fa-cart-shopping icon"></i>
+          </button>
+          <button className="btn icon-button fs-5">
+            <i className="fa-solid fa-phone icon"></i>
+          </button>
         </div>
       </div>
     </nav>

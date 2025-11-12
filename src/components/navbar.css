@@ -68,3 +68,15 @@
 .right-section .icon {
   text-shadow: 7px 10px 8px rgba(0, 0, 0, 0.45);
 }
+
+@media (min-width:401px) and (max-width: 990px) {
+  .right-section{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    right: 30px;
+    top: 50px;
+  }
+}
