@@ -1,31 +1,44 @@
-html,
-body {
-  height: 100vh;
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-image: url("../../assets/background.jpg");
-  background-size: cover;
-  background-position: right center;
-  background-repeat: no-repeat;
+}
+
+html,
+body {
+  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
+  background-color: #fafafa;
 }
 
 .home-page {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  background-image: url("../../assets/background.jpg");
+  background-size: cover;
+  background-position: center center; 
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .home-page .hero-content {
   position: absolute;
-  bottom: 150px;
-  left: 55px;
+  bottom: 15%;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  justify-content: center;
+  max-width: 55%;
+  padding: 8px;
+  transform: translateZ(0);
 }
+
+/* ---------- Headings ---------- */
 .home-page h2 {
   font-size: 4.5rem;
   color: #000;
@@ -33,41 +46,74 @@ body {
   margin: 0;
   letter-spacing: -2px;
   text-transform: capitalize;
-  text-shadow: 7px 10px 5px rgba(0, 0, 0, 0.25);
+  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.18);
 }
 
+/* ---------- Button ---------- */
 .home-page .btn {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-top: 2rem;
   padding: 15px 45px;
   font-size: 24px;
-  background-color: #00000013;
+  background-color: rgba(0, 0, 0, 0.07);
   border: none;
-  border-radius: 4px;
-  box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.45);
+  border-radius: 6px;
+  box-shadow: 6px 10px 18px rgba(0, 0, 0, 0.18);
   color: #000;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: background-color 200ms ease, transform 150ms ease;
+  transition: background-color 250ms ease, transform 150ms ease, box-shadow 250ms ease;
 }
 
 .home-page .btn:hover {
-  background-color: #67676733;
-  transform: translateY(-2px);
+  background-color: rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 10px 18px 28px rgba(0, 0, 0, 0.22);
 }
 
-.home-page .hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+/* ---------- Responsive tweaks ---------- */
 
 /* Very small phones */
-@media (max-width: 768px) {
-  html,
-  body {
+@media (max-width: 400px) {
+  .home-page .hero-content {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    top: auto;
+    padding: 24px;
+    max-width: 92%;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+  }
+
+  .home-page h2 {
+    font-size: 2rem;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.12);
+  }
+
+  .home-page .btn {
+    display: block;
+    width: min(320px, 84%);
+    margin: 18px auto 0 auto;
+    padding: 12px 22px;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: rgba(0, 0, 0, 0.92);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    text-align: center;
+  }
+}
+
+/* Small - Large tablets */
+@media (min-width: 401px) and (max-width: 768px) {
+  .home-page {
     background-position: center top;
     background-size: cover;
   }
@@ -82,57 +128,16 @@ body {
     bottom: auto;
     left: auto;
     top: auto;
-    transform: none;
-    padding: 24px;
-    max-width: 92%;
-    margin: 0 auto;
+    max-width: 80%;
     text-align: center;
-  }
-
-  .home-page h2 {
-    font-size: 2.5rem;
-    line-height: 1.05;
-    letter-spacing: -1px;
-    text-shadow: 5px 6px 4px rgba(0, 0, 0, 0.18);
-  }
-
-  .home-page .btn {
-    display: block;
-    width: min(320px, 84%);
-    margin: 18px auto 0 auto;
-    padding: 12px 22px;
-    font-size: 18px;
-    font-weight: 700;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    text-align: center;
-  }
-}
-
-/* Tablets (small and large) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  html,
-  body {
-    background-position: center top;
-    background-size: cover;
-  }
-
-  .home-page {
-    justify-content: center;
     align-items: center;
-  }
-  .home-page .hero-content {
-    position: absolute;
-    bottom: 120px;
-    left: 40px;
-    max-width: 55%;
+    padding: 20px;
   }
 
   .home-page h2 {
     font-size: 2.5rem;
+    letter-spacing: -1px;
+    text-shadow: 4px 5px 5px rgba(0, 0, 0, 0.14);
   }
 
   .home-page .btn {
@@ -141,22 +146,30 @@ body {
   }
 }
 
-/* Desktop wide and ultra-wide */
-@media (min-width: 1025px) and (max-width: 1440px) {
-  html,
-  body {
+/* Medium desktops / laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-page {
     background-position: center top;
     background-size: cover;
   }
 
-  .home-page {
-    justify-content: center;
-    align-items: center;
-  }
   .home-page .hero-content {
     position: absolute;
-    bottom: 160px;
-    left: 60px;
+    bottom: 12%;
+    left: 4%;
+    max-width: 55%;
+  }
+
+  .home-page h2 {
+    font-size: 2.6rem;
+  }
+}
+
+/* Desktop wide and ultra-wide */
+@media (min-width: 1025px) {
+  .home-page .hero-content {
+    bottom: 15%;
+    left: 5%;
     max-width: 48%;
   }
 }
