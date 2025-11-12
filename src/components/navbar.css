@@ -1,6 +1,6 @@
 .left-section .navbar-brand {
   font-family: "sans-serif";
-  text-shadow: 10px 10px 5px rgba(0, 0, 0, 0.45);
+  text-shadow: 10px 10px 8px rgba(0, 0, 0, 0.45);
 }
 
 .middle-section {
@@ -66,5 +66,5 @@
 }
 
 .right-section .icon {
-  text-shadow: 7px 10px 5px rgba(0, 0, 0, 0.45);
+  text-shadow: 7px 10px 8px rgba(0, 0, 0, 0.45);
 }
