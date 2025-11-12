@@ -63,3 +63,100 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+/* Very small phones */
+@media (max-width: 768px) {
+  html,
+  body {
+    background-position: center top;
+    background-size: cover;
+  }
+
+  .home-page {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-page .hero-content {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    top: auto;
+    transform: none;
+    padding: 24px;
+    max-width: 92%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .home-page h2 {
+    font-size: 2.5rem;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    text-shadow: 5px 6px 4px rgba(0, 0, 0, 0.18);
+  }
+
+  .home-page .btn {
+    display: block;
+    width: min(320px, 84%);
+    margin: 18px auto 0 auto;
+    padding: 12px 22px;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    text-align: center;
+  }
+}
+
+/* Tablets (small and large) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html,
+  body {
+    background-position: center top;
+    background-size: cover;
+  }
+
+  .home-page {
+    justify-content: center;
+    align-items: center;
+  }
+  .home-page .hero-content {
+    position: absolute;
+    bottom: 120px;
+    left: 40px;
+    max-width: 55%;
+  }
+
+  .home-page h2 {
+    font-size: 2.5rem;
+  }
+
+  .home-page .btn {
+    padding: 12px 36px;
+    font-size: 18px;
+  }
+}
+
+/* Desktop wide and ultra-wide */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  html,
+  body {
+    background-position: center top;
+    background-size: cover;
+  }
+
+  .home-page {
+    justify-content: center;
+    align-items: center;
+  }
+  .home-page .hero-content {
+    position: absolute;
+    bottom: 160px;
+    left: 60px;
+    max-width: 48%;
+  }
+}
