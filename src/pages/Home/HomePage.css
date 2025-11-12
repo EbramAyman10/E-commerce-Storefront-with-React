@@ -9,6 +9,7 @@ body {
   background-position: right center;
   background-repeat: no-repeat;
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 .home-page {
@@ -18,10 +19,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 5%;
-  padding-top: 80px;
 }
 
+.home-page .hero-content {
+  position: absolute;
+  bottom: 150px;
+  left: 55px;
+}
 .home-page h2 {
   font-size: 4.5rem;
   color: #000;
@@ -56,6 +60,6 @@ body {
 .home-page .hero-content {
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 }
