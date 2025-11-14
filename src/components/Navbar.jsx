@@ -26,7 +26,7 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* COLLAPSE MENU */}
+      
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="middle-section mx-auto">
             <ul className="navbar-nav ms-auto flex-column flex-lg-row gap-4 text-black">
