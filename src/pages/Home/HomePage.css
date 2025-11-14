@@ -46,7 +46,7 @@ body {
   margin: 0;
   letter-spacing: -2px;
   text-transform: capitalize;
-  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.18);
+  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.40);
 }
 
 /* ---------- Button ---------- */
@@ -58,7 +58,7 @@ body {
   background-color: rgba(0, 0, 0, 0.07);
   border: none;
   border-radius: 6px;
-  box-shadow: 6px 10px 18px rgba(0, 0, 0, 0.18);
+  box-shadow: 6px 10px 18px rgba(0, 0, 0, 0.45);
   color: #000;
   cursor: pointer;
   text-transform: uppercase;
@@ -147,9 +147,10 @@ body {
     margin: 18px auto 0 auto;
     padding: 12px 22px;
     font-size: 18px;
-    font-weight: 700;
-    background-color: rgba(0, 0, 0, 0.92);
-    color: #fff;
+    font-weight: 500;
+    background-color: transparent;
+     backdrop-filter: blur(3px);
+    color: #000000;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;

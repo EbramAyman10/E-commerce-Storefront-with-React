@@ -1,6 +1,7 @@
 .left-section .navbar-brand {
   font-family: "sans-serif";
-  text-shadow: 10px 10px 8px rgba(0, 0, 0, 0.45);
+  text-shadow: 10px 10px 8px rgba(0, 0, 0, 0.45); 
+  font-size: 2.5rem;
 }
 
 .middle-section {
@@ -16,10 +17,12 @@
 
 .middle-section .nav-item {
   margin: auto;
+  font-size: 1.4rem;
+  text-shadow: 10px 10px 8px rgba(0, 0, 0, 0.3);
 } 
 .middle-section .nav-link {
   position: relative;
-  font-weight: bold;
+  font-weight: 500;
   display: inline-block;
   color: inherit;
   transition: color 180ms ease, transform 150ms ease;
@@ -67,6 +70,7 @@
 
 .right-section .icon {
   text-shadow: 7px 10px 8px rgba(0, 0, 0, 0.45);
+  font-size: 1.4rem;
 }
 
 @media (max-width: 400px) {
@@ -90,6 +94,6 @@
     align-items: center;
     justify-content: center;
     right: 30px;
-    top: 50px;
+    top: 60px;
   }
 }
