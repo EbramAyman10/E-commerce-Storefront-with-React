@@ -1,40 +1,92 @@
 import "./ShopPage.css";
 import { useEffect, useState } from "react";
+import Navbar2 from "../components/Navbar2";
 
 export default function ShopPage() {
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState("latest");
+  const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=8") // 8 products total
+    fetch("https://fakestoreapi.com/products?limit=20")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
 
-  // First 6 products for the top grid
   const apiGridProducts = products.slice(0, 6);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlideIndex((prev) => (prev + 1) % apiGridProducts.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [apiGridProducts.length]);
+
+  // MANUAL CONTROL
+  const prevSlide = () => {
+    setSlideIndex((prev) =>
+      prev === 0 ? apiGridProducts.length - 1 : prev - 1
+    );
+  };
+
+  const nextSlide = () => {
+    setSlideIndex((prev) => (prev + 1) % apiGridProducts.length);
+  };
+
+  const filteredProducts = (() => {
+    switch (selectedProduct) {
+      case "latest":
+        return [...products].slice(-8);
+      case "suggested":
+        return [...products]
+          .sort((a, b) => b.rating.rate - a.rating.rate)
+          .slice(0, 8);
+      case "trending":
+        return [...products]
+          .sort((a, b) => b.price - a.price)
+          .slice(0, 8);
+      case "newarrival":
+        return [...products].slice(0, 8);
+      default:
+        return products.slice(0, 8);
+    }
+  })();
 
   return (
     <>
-      {/* API Products Grid - 6 items */}
-      <div className="d-grid my-5">
-        {apiGridProducts.map((product) => (
-          <div key={product.id} className={`item item-${product.id}`}>
-            <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-            <p>${product.price}</p>
-            <p>20% Offer</p>
-            <button className="btn">
-              Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-            </button>
-          </div>
-        ))}
+      <div className="top-slider">
+        <button className="arrow left" onClick={prevSlide}>❮</button>
+
+        <div className="slide">
+          <img src={apiGridProducts[slideIndex]?.image} alt="" />
+          <h3>{apiGridProducts[slideIndex]?.title}</h3>
+          <p className="price">${apiGridProducts[slideIndex]?.price}</p>
+          <p className="offer">20% Offer</p>
+          <button className="btn">
+            Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
+          </button>
+        </div>
+
+        <button className="arrow right" onClick={nextSlide}>❯</button>
       </div>
 
-      {/* Top Products Section - 8 items */}
       <div className="container my-5">
-        <h3 className="mb-4">Top Products</h3>
-        <div className="row g-4">
-          {products.map((product) => (
+        <div className="top-section">
+          <div className="left-title">
+            <h3 className="mb-2" id="top">Top Products</h3>
+          </div>
+
+          <div className="right-navbar">
+            <Navbar2
+              onselectProduct={setSelectedProduct}
+              selectedProduct={selectedProduct}
+            />
+          </div>
+        </div>
+
+        <div className="row g-4" id="row">
+          {filteredProducts.map((product) => (
             <div key={product.id} className="col-12 col-md-6 col-lg-3">
               <div className="card shadow-sm top-product-card h-100">
                 <img
