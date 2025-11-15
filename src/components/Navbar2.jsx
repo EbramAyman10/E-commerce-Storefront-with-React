@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./navbar.css";
+import "../pages/ShopPage.css";
+
 
 export default function Navbar2({ onselectProduct, selectedProduct }) {
   const [open, setOpen] = useState(false);
