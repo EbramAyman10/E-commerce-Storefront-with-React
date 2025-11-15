@@ -58,15 +58,24 @@ export default function ShopPage() {
       <div className="top-slider">
         <button className="arrow left" onClick={prevSlide}>❮</button>
 
-        <div className="slide">
-          <img src={apiGridProducts[slideIndex]?.image} alt="" />
-          <h3>{apiGridProducts[slideIndex]?.title}</h3>
-          <p className="price">${apiGridProducts[slideIndex]?.price}</p>
-          <p className="offer">20% Offer</p>
-          <button className="btn">
-            Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-          </button>
-        </div>
+        {apiGridProducts[slideIndex] && (
+          <div className="slide">
+            <img src={apiGridProducts[slideIndex].image} alt="" />
+            <h3>{apiGridProducts[slideIndex].title}</h3>
+            <p className="price">
+              <span style={{ textDecoration: "line-through red", marginRight: "15px" }}>
+                ${apiGridProducts[slideIndex].price.toFixed(2)}
+              </span>
+              <span style={{ color: "#ffc107", fontWeight: "bold" }}>
+                ${(apiGridProducts[slideIndex].price * 0.8).toFixed(2)}
+              </span>
+            </p>
+            <p className="offer">20% OFF</p>
+            <button className="btn">
+              Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
+            </button>
+          </div>
+        )}
 
         <button className="arrow right" onClick={nextSlide}>❯</button>
       </div>
