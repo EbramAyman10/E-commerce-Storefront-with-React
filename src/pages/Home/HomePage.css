@@ -94,10 +94,8 @@ body {
   }
 
   .home-page .nav-link {
-width: auto;
-padding-left: 28px;
-padding-right: 28px;
-
+    display: block;
+    width: min(320px, 84%);
     margin: 18px auto 0 auto;
     padding: 12px 22px;
     font-size: 18px;
@@ -141,10 +139,8 @@ padding-right: 28px;
   }
 
   .home-page .nav-link {
-    width: auto;
-padding-left: 28px;
-padding-right: 28px;
-
+    display: block;
+    width: min(320px, 84%);
     margin: 18px auto 0 auto;
     padding: 12px 22px;
     font-size: 18px;
