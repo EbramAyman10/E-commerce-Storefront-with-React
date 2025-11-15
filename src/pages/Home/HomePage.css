@@ -48,7 +48,7 @@ body {
   text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.40);
 }
 
-.home-page  .nav-link {
+.home-page  .btn {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-top: 2rem;
   padding: 15px 45px;
@@ -65,10 +65,25 @@ body {
     box-shadow 250ms ease;
 }
 
-.home-page .nav-link:hover {
+.home-page .btn:hover {
   background-color: rgba(0, 0, 0, 0.12);
   transform: translateY(-3px);
   box-shadow: 10px 18px 28px rgba(0, 0, 0, 0.22);
+}
+.stars {
+  display: flex;
+  gap: 4px;
+  margin: 6px 0;
+}
+
+.filled-star {
+  color: #ffc107; 
+  font-size: 18px;
+}
+
+.empty-star {
+  color: #ccc;
+  font-size: 18px;
 }
 
 
