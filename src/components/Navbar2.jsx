@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Navbar.css";
+import "./navbar.css";
 
 export default function Navbar2({ onselectProduct, selectedProduct }) {
   const [open, setOpen] = useState(false);
@@ -7,7 +7,7 @@ export default function Navbar2({ onselectProduct, selectedProduct }) {
   return (
     <>
       <button className="mobile-toggle" onClick={() => setOpen(!open)}>
-         Filters <i className="fa-solid fa-sliders"></i>
+        Filters <i className="fa-solid fa-sliders"></i>
       </button>
 
       <nav className={`shop-page ${open ? "open" : ""}`}>
@@ -38,10 +38,7 @@ export default function Navbar2({ onselectProduct, selectedProduct }) {
         >
           New Arrival
         </button>
-
-
       </nav>
-      
     </>
   );
 }
