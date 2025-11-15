@@ -23,7 +23,6 @@ export default function ShopPage() {
     return () => clearInterval(interval);
   }, [apiGridProducts.length]);
 
-  // MANUAL CONTROL
   const prevSlide = () => {
     setSlideIndex((prev) =>
       prev === 0 ? apiGridProducts.length - 1 : prev - 1
@@ -32,6 +31,27 @@ export default function ShopPage() {
 
   const nextSlide = () => {
     setSlideIndex((prev) => (prev + 1) % apiGridProducts.length);
+  };
+
+ 
+  const renderStars = (rating) => {
+    const totalStars = 5;
+    const filledStars = Math.round(rating);
+
+    return (
+      <div className="stars">
+        {[...Array(totalStars)].map((_, index) => (
+          <i
+            key={index}
+            className={
+              index < filledStars
+                ? "fa-solid fa-star filled-star"
+                : "fa-regular fa-star empty-star"
+            }
+          ></i>
+        ))}
+      </div>
+    );
   };
 
   const filteredProducts = (() => {
@@ -105,6 +125,7 @@ export default function ShopPage() {
                 />
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{product.title}</h5>
+                  {renderStars(product.rating.rate)}
                   <p className="price mt-auto">${product.price}</p>
                   <button className="btn">
                     Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
