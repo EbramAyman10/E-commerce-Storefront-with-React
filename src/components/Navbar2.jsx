@@ -38,7 +38,10 @@ export default function Navbar2({ onselectProduct, selectedProduct }) {
         >
           New Arrival
         </button>
+
+
       </nav>
+      
     </>
   );
 }
