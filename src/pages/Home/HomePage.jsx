@@ -6,9 +6,11 @@ export default function HomePage() {
       <div className="hero-content">
         <h2>Unleash Your</h2>
         <h2>Unique Style</h2>
-        <button className="btn "> 
-        <NavLink to="/shop" className="nav-link">Shop Now</NavLink></button>
-                     
+    <NavLink to="/shop" className="btn">
+  Shop Now
+</NavLink>
+
+        
       </div>
     </div>
   );
