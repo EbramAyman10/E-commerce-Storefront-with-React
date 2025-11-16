@@ -72,6 +72,23 @@
 .right-section .icon {
   text-shadow: 7px 10px 8px rgba(0, 0, 0, 0.45);
   font-size: 1.5rem;
+  color: #000;
+}
+
+.icon-button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.active-icon {
+  
+  border-radius: 8px;
+  transform: translateY(-3px);
+}
+
+.active-icon .icon {
+  color: #ffc107 !important;
 }
 
 
