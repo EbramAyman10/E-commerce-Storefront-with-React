@@ -261,6 +261,10 @@ background-color: #ffc107;
 .mobile-only {
   display: none;
 }
+.stars {
+  margin: 0px -15px;
+ 
+}
 @media (max-width: 768px) {
   .mobile-only {
     display: block;

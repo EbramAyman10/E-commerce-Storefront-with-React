@@ -1,6 +1,6 @@
 import "./ShopPage.css";
 import { useEffect, useState } from "react";
-import Navbar2 from "../components/Navbar2";
+import Navbar2 from "../../components/Navbar2";
 
 export default function ShopPage() {
   const [products, setProducts] = useState([]);
