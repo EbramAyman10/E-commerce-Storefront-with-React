@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../pages/ShopPage.css";
+import "../pages/Shop/ShopPage.css";
 
 
 export default function Navbar2({ onselectProduct, selectedProduct }) {
