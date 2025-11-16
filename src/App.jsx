@@ -6,6 +6,8 @@ import Men from "./pages/Men/men";
 import Women from "./pages/Women/women";
 import Kids from "./pages/Kids/kids";
 import Collections from "./pages/Collections/collections";
+import Login from "./pages/Login/login";
+import SearchPage from "./pages/Search/search";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function App() {
@@ -19,6 +21,9 @@ function App() {
         <Route path="/women" element={<Women />} />
         <Route path="/kids" element={<Kids />} />
         <Route path="/collections" element={<Collections />} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </>
   );
