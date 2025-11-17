@@ -214,47 +214,6 @@ body {
   background: #ffc107;
   transform: scale(1.05);
 }
-
-.top-product-card {
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.45);
-  transition: all 0.3s ease;
-}
-.top-product-card:hover {
-  transform: scale(1.05);
-}
-.top-product-img {
-  height: 200px;
-  object-fit: contain;
-  border-bottom: #000 1px solid;
-}
-.top-product-card p {
-  margin: 0;
-  font-size: 1.2rem;
-}
-.top-product-card h5 {
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-.top-product-card h3 {
-  margin: 0;
-}
-.top-product-card .btn {
-  margin: 0;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.top-product-card .btn:hover {
-  transform: scale(1.1);
-  background-color: #ffc107;
-}
 .mobile-toggle {
   display: none;
 }

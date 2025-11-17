@@ -1,10 +1,11 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./Cart.css";
+import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
 import RenderStars from "./stars";
+import ProductCard from "./productCard";
 
-export default function Cart() {
+export default function ProductDetails() {
   const { id } = useParams();
   const { products } = useProducts();
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -151,23 +152,7 @@ export default function Cart() {
         </div>
         <div className="row g-4">
           {relatedProducts.map((prod) => (
-            <div key={prod.id} className="col-12 col-md-6 col-lg-3">
-              <div className="card shadow-sm top-product-card h-100">
-                <img
-                  src={prod.image}
-                  className="card-img-top top-product-img"
-                  alt={prod.title}
-                />
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{prod.title}</h5>
-                  <RenderStars rating={prod.rating.rate} />
-                  <p className="price mt-auto">${prod.price.toFixed(2)}</p>
-                  <Link to={`/cart/${prod.id}`} className="btn">
-                    Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <ProductCard key={prod.id} product={prod} />
           ))}
         </div>
       </div>

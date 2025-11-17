@@ -3,7 +3,8 @@ import "./ShopPage.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../context/ProductContext";
-import RenderStars from "../../components/stars";
+import ProductCard from "../../components/productCard";
+import SlideItem from "../../components/slideItems";
 
 export default function ShopPage() {
   const { products } = useProducts();
@@ -56,30 +57,7 @@ export default function ShopPage() {
         </button>
 
         {apiGridProducts[slideIndex] && (
-          <div className="slide">
-            <img src={apiGridProducts[slideIndex].image} alt="" />
-            <h3>{apiGridProducts[slideIndex].title}</h3>
-            <p className="price">
-              <span
-                style={{
-                  textDecoration: "line-through red",
-                  marginRight: "15px",
-                }}
-              >
-                ${apiGridProducts[slideIndex].price.toFixed(2)}
-              </span>
-              <span style={{ color: "#ffc107", fontWeight: "bold" }}>
-                ${(apiGridProducts[slideIndex].price * 0.8).toFixed(2)}
-              </span>
-            </p>
-            <p className="offer">20% OFF</p>
-            <Link
-              to={`/cart/${apiGridProducts[slideIndex].id}`}
-              className="btn"
-            >
-              Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-            </Link>
-          </div>
+          <SlideItem product={apiGridProducts[slideIndex]} />
         )}
 
         <button className="arrow right" onClick={nextSlide}>
@@ -105,23 +83,7 @@ export default function ShopPage() {
 
         <div className="row g-4" id="row">
           {filteredProducts.map((product) => (
-            <div key={product.id} className="col-12 col-md-6 col-lg-3">
-              <div className="card shadow-sm top-product-card h-100">
-                <img
-                  src={product.image}
-                  className="card-img-top top-product-img"
-                  alt={product.title}
-                />
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{product.title}</h5>
-                  <RenderStars rating={product.rating.rate} />
-                  <p className="price mt-auto">${product.price}</p>
-                  <Link to={`/cart/${product.id}`} className="btn">
-                    Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>
