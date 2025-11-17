@@ -237,7 +237,7 @@ background-color: #ffc107;
   margin: 0;
   
 }
-.top-product-card button{
+.top-product-card .btn{
   margin: 0;
   background-color: #000;
   color: #fff;
@@ -247,7 +247,7 @@ background-color: #ffc107;
   cursor: pointer;
   transition: all .3s ease;
 }
-.top-product-card button:hover{
+.top-product-card .btn:hover{
   transform: scale(1.1);
   background-color: #ffc107;
 }
