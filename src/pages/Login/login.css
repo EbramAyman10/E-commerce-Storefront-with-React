@@ -150,6 +150,12 @@ html, body {
 .login-content.signup-active .login-image {
   transform: translateX(-120%); 
 }
+.error{
+  text-align: center;
+  color: #ff4d4d;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
 
 
 @media (max-width: 900px) {
@@ -378,4 +384,23 @@ html, body {
     .login-form { padding: 30px 20px; }
     .login-content img { display: none; }
 }
+
+@media (max-width: 900px) {
+  .error {
+    color: #ff4d4d !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .error {
+    color: #ff4d4d !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .error {
+    color: #ff4d4d !important;
+  }
+}
+
 
