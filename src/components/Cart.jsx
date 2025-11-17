@@ -53,15 +53,14 @@ useEffect(() => {
 
   return (
     <>
-      {/* Product Details */}
       <div className="cart-container row">
         <div className="cart-images col-6">
-          <img className="main-image" src={product.image} alt={product.title} />
+         <div className="image-container"> <img className="main-image" src={product.image} alt={product.title} /></div>
           <div className="image-row">
             {colors.map((_, index) => (
               <div
                 key={index}
-                className={`thumb ${selectedColor === index ? "active-color" : ""}`}
+                className={`thumb1 ${selectedColor === index ? "active-color" : ""}`}
                 onClick={() => setSelectedColor(index)}
               >
                 <img src={product.image} alt={`thumb-${index}`} />
@@ -73,7 +72,7 @@ useEffect(() => {
         <div className="cart-info col-6">
           <p className="company">{product.category}</p>
           <h1>{product.title}</h1>
-          {renderStars(product.rating.rate)}
+          <h1 className="stars">{renderStars(product.rating.rate)}</h1>
           <p className="price">${product.price.toFixed(2)}</p>
 
           <h3>Select Color:</h3>
