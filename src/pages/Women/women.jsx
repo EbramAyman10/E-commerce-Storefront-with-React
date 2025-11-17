@@ -57,13 +57,9 @@ export default function Women() {
 
                   <p className="price mt-auto">${product.price}</p>
 
-                  <Link
-                    to={`/women/${product.id}`}
-                    className="btn btn-primary mt-3"
-                  >
-                    Add to Cart
-                    <i className="fa-solid fa-cart-arrow-down"></i>
-                  </Link>
+                                    <Link to={`/cart/${product.id}`} className="btn">
+                      Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
+                    </Link>
                 </div>
               </div>
             </div>

@@ -1,5 +1,7 @@
 import "./ShopPage.css";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import Navbar2 from "../../components/Navbar2";
 
 export default function ShopPage() {
@@ -91,9 +93,9 @@ export default function ShopPage() {
               </span>
             </p>
             <p className="offer">20% OFF</p>
-            <button className="btn">
-              Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-            </button>
+        <Link to={`/cart/${apiGridProducts[slideIndex].id}`} className="btn">
+        Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
+        </Link>
           </div>
         )}
 
@@ -127,9 +129,10 @@ export default function ShopPage() {
                   <h5 className="card-title">{product.title}</h5>
                   {renderStars(product.rating.rate)}
                   <p className="price mt-auto">${product.price}</p>
-                  <button className="btn">
-                    Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-                  </button>
+                    <Link to={`/cart/${product.id}`} className="btn">
+                      Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
+                    </Link>
+
                 </div>
               </div>
             </div>

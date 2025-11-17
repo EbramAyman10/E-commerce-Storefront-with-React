@@ -55,13 +55,8 @@ import { Link } from "react-router-dom";
                     <p className="card-text">{product.description}</p>
                     {renderStars(product.rating.rate)}
                     <p className="price mt-auto">${product.price}</p>
-                    <Link
-                      to={`/product/${product.id}`}
-                      className="btn btn-primary mt-auto"
-                    >
-  
-                    Add to Cart
-                    <i className="fa-solid fa-cart-arrow-down"></i>
+                                       <Link to={`/cart/${product.id}`} className="btn">
+                      Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
                     </Link>
                   </div>
                 </div>

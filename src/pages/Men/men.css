@@ -1,9 +1,8 @@
-/* Container spacing */
 .container {
   margin-top: 40px;
 }
 
-/* Make all cards same height */
+
 .card {
   height: 100%;
   display: flex;
@@ -12,7 +11,6 @@
   overflow: hidden;
 }
 
-/* Image fixed height */
 .card-img-top {
   height: 220px;
   object-fit: contain;
@@ -63,11 +61,22 @@
 }
 
 
-.btn-primary {
+.btn {
   width: 100%;
   margin-top: auto;
   background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all .3s ease;
 
+}
+.btn:hover{
+  background-color: #ffc107;
+  border: none;
+  transform: scale(1.1);
 }
 .fa-solid{
   margin-left: 10px;

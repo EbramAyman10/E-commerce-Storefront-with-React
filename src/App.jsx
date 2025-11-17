@@ -8,6 +8,7 @@ import Kids from "./pages/Kids/kids";
 import Collections from "./pages/Collections/collections";
 import Login from "./pages/Login/login";
 import SearchPage from "./pages/Search/search";
+import Cart from "./components/Cart";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         <Route path="/collections" element={<Collections />} />
         <Route path="/login" element={<Login />}/>
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/cart/:id" element={<Cart />} />
+
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </>
