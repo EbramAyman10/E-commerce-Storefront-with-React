@@ -157,11 +157,12 @@ body {
 .right-navbar {
   display: flex;
   align-items: center;
-  background-color: transparent;
+  background-color: #eee;
   backdrop-filter: blur(10px);
   border: 1px white solid;
   box-shadow: 5px -6px 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 .right-navbar button {
   padding: 8px 14px;
