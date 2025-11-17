@@ -4,12 +4,15 @@ import "./navbar.css";
 
 export default function Navbar() {
   const location = useLocation();
-  const isHome = location.pathname === "/" || location.pathname === "/login" || location.pathname === "/search" ;
-
+  const isHome = location.pathname === "/" || location.pathname === "/login";
+  const isSearch = location.pathname === "/search";
   useEffect(() => {
     if (isHome) document.querySelector(".navbar").classList.add("fixed-top");
     else document.querySelector(".navbar").classList.remove("fixed-top");
-  }, [isHome]);
+
+    if (isSearch) document.querySelector(".navbar").classList.add("color-bg");
+    else document.querySelector(".navbar").classList.remove("color-bg");
+  }, [isHome,isSearch]);
 
   return (
     <nav
