@@ -1,4 +1,3 @@
-
 .cart-container {
     width: 100%;
     margin: 0 auto;
@@ -18,13 +17,13 @@
     margin-left: -5px;
 }
 .company {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #000;
   margin-bottom: 5px;
 }
 .cart-info .price{
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #000;
     margin-bottom: 5px;
@@ -42,8 +41,8 @@
     margin-right: 10px;
 }
 .image-container img{
-    width: 60%;
-    height: 60%;
+    width: 50%;
+    height: 50%;
     border-radius: 15px;
 }
 .stars {

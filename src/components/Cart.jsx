@@ -71,7 +71,7 @@ useEffect(() => {
 
         <div className="cart-info col-6">
           <p className="company">{product.category}</p>
-          <h1>{product.title}</h1>
+          <h1 className="fs-3">{product.title}</h1>
           <h1 className="stars">{renderStars(product.rating.rate)}</h1>
           <p className="price">${product.price.toFixed(2)}</p>
 

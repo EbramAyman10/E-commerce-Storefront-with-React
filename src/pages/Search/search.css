@@ -1,8 +1,7 @@
 .search-page {
   min-height: 100vh;
-  background-color: #f2f2f2; 
+  background-color: #f2f2f2;
   padding: 20px 0;
-  
 }
 
 .search-bar-container {
@@ -20,7 +19,6 @@
   border: 1px solid #ccc;
 }
 
-
 .container {
   margin-top: 10px;
 }
@@ -31,13 +29,13 @@
   flex-direction: column;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .card-img-top {
@@ -62,9 +60,15 @@
 
 .card-text {
   font-size: 14px;
-  min-height: 50px;
-  max-height: 50px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  max-height: 60px;
   overflow: hidden;
+  line-height: 1.4;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .stars {
@@ -92,15 +96,22 @@
   background-color: black;
 }
 
-.fa-solid{
+.fa-solid {
   margin-left: 10px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
-  .col-lg-3 { flex: 0 0 50%; max-width: 50%; }
+  .col-lg-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
 }
 
 @media (max-width: 576px) {
-  .col-md-6, .col-lg-3 { flex: 0 0 100%; max-width: 100%; }
+  .col-md-6,
+  .col-lg-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }

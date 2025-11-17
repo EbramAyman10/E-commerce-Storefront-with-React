@@ -1,11 +1,23 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import "./navbar.css";
 
 export default function Navbar() {
-  return (
-    <nav className="navbar navbar-expand-lg bg-transparent px-3 py-2 fixed-top text-black">
-      <div className="container-fluid d-flex justify-content-between align-items-center w-100">
+  const location = useLocation();
+  const isHome = location.pathname === "/" || location.pathname === "/login" || location.pathname === "/search" ;
 
+  useEffect(() => {
+    if (isHome) document.querySelector(".navbar").classList.add("fixed-top");
+    else document.querySelector(".navbar").classList.remove("fixed-top");
+  }, [isHome]);
+
+  return (
+    <nav
+      className={`navbar navbar-expand-lg bg-transparent px-3 py-2  text-black ${
+        isHome ? "fixed-top" : ""
+      }`}
+    >
+      <div className="container-fluid d-flex justify-content-between align-items-center w-100">
         {/* LEFT SECTION */}
         <div className="left-section">
           <Link className="navbar-brand text-black fw-bold" to="/">
@@ -27,7 +39,6 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="middle-section mx-auto">
             <ul className="navbar-nav ms-auto flex-column flex-lg-row gap-4 text-black">
-
               <li className="nav-item">
                 <NavLink
                   to="/shop"
@@ -82,13 +93,11 @@ export default function Navbar() {
                   Collection
                 </NavLink>
               </li>
-
             </ul>
           </div>
         </div>
 
         <div className="right-section d-flex">
-
           <NavLink
             to="/login"
             className={({ isActive }) =>
@@ -107,7 +116,6 @@ export default function Navbar() {
             <i className="fa-solid fa-magnifying-glass icon"></i>
           </NavLink>
 
-         
           <NavLink
             to="/cart"
             className={({ isActive }) =>
@@ -117,7 +125,6 @@ export default function Navbar() {
             <i className="fa-solid fa-cart-shopping icon"></i>
           </NavLink>
 
-       
           <NavLink
             to="/contact"
             className={({ isActive }) =>
@@ -126,9 +133,7 @@ export default function Navbar() {
           >
             <i className="fa-solid fa-phone icon"></i>
           </NavLink>
-
         </div>
-
       </div>
     </nav>
   );

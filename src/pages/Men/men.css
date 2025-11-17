@@ -2,7 +2,6 @@
   margin-top: 40px;
 }
 
-
 .card {
   height: 100%;
   display: flex;
@@ -24,7 +23,6 @@
   padding: 15px;
 }
 
-
 .card-title {
   font-size: 25px;
   font-weight: 600;
@@ -34,11 +32,16 @@
 
 .card-text {
   font-size: 20px;
-  min-height: 60px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   max-height: 60px;
   overflow: hidden;
+  line-height: 1.4;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
-
 
 .stars {
   margin: 0px -15px;
@@ -52,14 +55,12 @@
   color: #ccc;
 }
 
-
 .price {
   font-size: 18px;
   font-weight: bold;
   margin-top: auto;
   margin-bottom: 10px;
 }
-
 
 .btn {
   width: 100%;
@@ -70,18 +71,16 @@
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  transition: all .3s ease;
-
+  transition: all 0.3s ease;
 }
-.btn:hover{
+.btn:hover {
   background-color: #ffc107;
   border: none;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
-.fa-solid{
+.fa-solid {
   margin-left: 10px;
 }
-
 
 .card {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

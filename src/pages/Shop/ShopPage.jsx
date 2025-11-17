@@ -1,8 +1,7 @@
+import Navbar2 from "../../components/Navbar2";
 import "./ShopPage.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import Navbar2 from "../../components/Navbar2";
 
 export default function ShopPage() {
   const [products, setProducts] = useState([]);
@@ -102,10 +101,10 @@ export default function ShopPage() {
         <button className="arrow right" onClick={nextSlide}>❯</button>
       </div>
 
-      <div className="container my-5">
-        <div className="top-section">
+      <div className="container my-5 pb-5">
+        <div className="top-section ">
           <div className="left-title">
-            <h3 className="mb-2" id="top">Top Products</h3>
+            <h3 className="mb-2 fs-2" id="top">Top Products</h3>
           </div>
 
           <div className="right-navbar">
