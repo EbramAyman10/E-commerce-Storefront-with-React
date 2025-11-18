@@ -3,6 +3,7 @@
   top: 50px;
   width: 100%;
   max-width: 90%;
+  word-wrap: break-word;
   margin: 0 auto;
   text-align: center;
   background: #eee;
@@ -21,7 +22,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 450px;
+  height: auto;
   box-sizing: border-box;
 }
 .top-slider img {

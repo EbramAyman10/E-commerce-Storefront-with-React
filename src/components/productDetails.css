@@ -203,13 +203,10 @@
     border-bottom: #000 1px solid;
     height: 75px;
 }
-
-#top{
-    justify-self: center;
-    align-self: center;
+.top-section .left-title{
+    width: 100%;
     text-align: center;
 }
-
 
 @media (max-width: 900px) {
   .cart-container {
