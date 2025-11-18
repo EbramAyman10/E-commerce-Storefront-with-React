@@ -4,8 +4,11 @@ import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
 import RenderStars from "./stars";
 import ProductCard from "./productCard";
-
+import { addToCart } from "../store/slice/cartSlice";
+import { useDispatch } from "react-redux";
 export default function ProductDetails() {
+  const dispatch = useDispatch();
+
   const { id } = useParams();
   const { products } = useProducts();
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -13,6 +16,9 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedDown, setSelectedDown] = useState("Description");
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
   const sizes = ["39", "40", "41", "42", "43", "44", "45", "46", "47"];
   const colors = [0, 1, 2, 3];
 
@@ -94,7 +100,12 @@ export default function ProductDetails() {
           </div>
 
           <div className="cart-actions">
-            <button className="btn">Add to Cart</button>
+            <button
+              className="btn"
+              onClick={() => dispatch(addToCart(product))}
+            >
+              Add to Cart
+            </button>
             <button className="heart">
               <i className="fa-regular fa-heart"></i>
             </button>

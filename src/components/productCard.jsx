@@ -1,9 +1,18 @@
+import { useDispatch } from "react-redux";
 import "./productCard.css";
 import RenderStars from "./stars";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { addToCart } from "../store/slice/cartSlice";
+
 export default function ProductCard({ product }) {
+  const go = useNavigate();
+  const dispatch = useDispatch();
   return (
-    <div className="col-12 col-md-6 col-lg-3">
+    <div
+      className="col-12 col-md-6 col-lg-3"
+      onClick={() => go(`/productDetails/${product.id}`)}
+      style={{ cursor: "pointer" }}
+    >
       <div className="card h-100 shadow-sm">
         <img src={product.image} className="card-img-top" alt={product.title} />
 
@@ -13,9 +22,15 @@ export default function ProductCard({ product }) {
           <RenderStars rating={product.rating.rate} />
 
           <p className="price mt-auto">${product.price}</p>
-          <Link to={`/productDetails/${product.id}`} className="btn">
+          <button
+            className="btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(addToCart(product));
+            }}
+          >
             Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-          </Link>
+          </button>
         </div>
       </div>
     </div>
