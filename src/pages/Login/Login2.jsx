@@ -3,16 +3,18 @@ import "./login.css";
 import backgroundImg from "./background.jpg";
 import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { Navigate } from "react-router-dom";
 
 export default function Login2() {
   const [switchLogin, setSwitch] = useState(true);
-
+  /*
+  لو اليوزر مسجل ميرحش علي اللوجين
   const { isLoggedIn } = useSelector((state) => state.user);
   if (isLoggedIn) {
     return <Navigate to={"/shop"} replace />;
   }
+    */
   return (
     <div className="login-page-container">
       <div

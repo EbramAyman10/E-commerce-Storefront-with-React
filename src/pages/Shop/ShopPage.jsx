@@ -1,7 +1,6 @@
 import Navbar2 from "../../components/Navbar2";
 import "./ShopPage.css";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useProducts } from "../../context/ProductContext";
 import ProductCard from "../../components/productCard";
 import SlideItem from "../../components/slideItems";
@@ -10,27 +9,6 @@ export default function ShopPage() {
   const { products } = useProducts();
 
   const [selectedProduct, setSelectedProduct] = useState("latest");
-  const [slideIndex, setSlideIndex] = useState(0);
-
-  const apiGridProducts = products.slice(0, 6);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % apiGridProducts.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [apiGridProducts.length]);
-
-  const prevSlide = () => {
-    setSlideIndex((prev) =>
-      prev === 0 ? apiGridProducts.length - 1 : prev - 1
-    );
-  };
-
-  const nextSlide = () => {
-    setSlideIndex((prev) => (prev + 1) % apiGridProducts.length);
-  };
 
   const filteredProducts = (() => {
     switch (selectedProduct) {
@@ -51,19 +29,7 @@ export default function ShopPage() {
 
   return (
     <>
-      <div className="top-slider">
-        <button className="arrow left" onClick={prevSlide}>
-          ❮
-        </button>
-
-        {apiGridProducts[slideIndex] && (
-          <SlideItem product={apiGridProducts[slideIndex]} />
-        )}
-
-        <button className="arrow right" onClick={nextSlide}>
-          ❯
-        </button>
-      </div>
+      <SlideItem />
 
       <div className="container my-5 pb-5">
         <div className="top-section ">
