@@ -1,6 +1,9 @@
+.navbar.color-bg{
+  background-color: #f2f2f2 !important;
+}
 .left-section .navbar-brand {
   font-family: "sans-serif";
-  text-shadow: 10px 10px 8px rgba(0, 0, 0, 0.45); 
+  text-shadow: 5px 8px 8px rgba(0, 0, 0, 0.45); 
   font-size: 2.5rem;
 }
 
@@ -12,14 +15,14 @@
   border: none;
   border-radius: 12px;
   padding: 8px 16px;
-  box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.45);
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.45);
 
 }
 
 .middle-section .nav-item {
   margin: auto;
   font-size: 1.4rem;
-  text-shadow: 10px 10px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 5px 8px 8px rgba(0, 0, 0, 0.3);
 } 
 .middle-section .nav-link {
   position: relative;

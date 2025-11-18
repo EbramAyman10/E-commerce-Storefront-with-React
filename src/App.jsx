@@ -8,8 +8,9 @@ import Kids from "./pages/Kids/kids";
 import Collections from "./pages/Collections/collections";
 import Login from "./pages/Login/login";
 import SearchPage from "./pages/Search/search";
-import Cart from "./components/Cart";
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import ProductDetails from "./components/productDetails";
+import Login2 from "./pages/Login/Login2";
 
 function App() {
   return (
@@ -18,13 +19,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
-        <Route path="/men" element={< Men />} />
+        <Route path="/men" element={<Men />} />
         <Route path="/women" element={<Women />} />
         <Route path="/kids" element={<Kids />} />
         <Route path="/collections" element={<Collections />} />
-        <Route path="/login" element={<Login />}/>
+        <Route path="/login" element={<Login2 />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/cart/:id" element={<Cart />} />
+        <Route path="/productDetails/:id" element={<ProductDetails />} />
 
         <Route path="*" element={<h1>404</h1>} />
       </Routes>

@@ -1,15 +1,14 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(
+body {
+  background: linear-gradient(
     rgba(194, 196, 197, 1),
     rgba(219, 220, 221, 1),
     rgba(227, 230, 234, 1),
     rgba(200, 205, 213, 1)
   );
-
 }
