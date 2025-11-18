@@ -3,8 +3,17 @@ import "./productCard.css";
 import RenderStars from "./stars";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../store/slice/cartSlice";
+import { useState } from "react";
+import checkmark from "../assets/checkmark.png";
 
 export default function ProductCard({ product }) {
+  const [added, setAdded] = useState(false);
+  function addedtoCart() {
+    setAdded(added ? false : true);
+    setTimeout(() => {
+      setAdded(false);
+    }, 2000);
+  }
   const go = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -22,11 +31,16 @@ export default function ProductCard({ product }) {
           <RenderStars rating={product.rating.rate} />
 
           <p className="price mt-auto">${product.price}</p>
+          <div className="added-to-cart" style={{ opacity: added ? 1 : 0 }}>
+            <img src={checkmark} />
+            Added
+          </div>
           <button
             className="btn"
             onClick={(e) => {
               e.stopPropagation();
               dispatch(addToCart(product));
+              addedtoCart();
             }}
           >
             Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>

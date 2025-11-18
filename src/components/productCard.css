@@ -32,7 +32,7 @@
 
 .card-title {
   font-size: 20px !important;
-  font-weight: 600 ;
+  font-weight: 600;
   min-height: 40px;
   margin-bottom: 5px;
   display: -webkit-box;
@@ -96,4 +96,17 @@
 }
 .fa-solid {
   margin-left: 10px;
+}
+
+.added-to-cart {
+  color: rgb(25, 135, 84);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  opacity: 0;
+}
+.added-to-cart img {
+  height: 19px;
+  margin-right: 6px;
 }
