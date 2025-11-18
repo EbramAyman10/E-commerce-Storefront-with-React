@@ -173,15 +173,49 @@
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
   }
 
   .product-image {
-    width: 100%;
-    height: auto;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+
+  .product-name {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .product-price {
+    font-size: 0.9rem;
   }
 
   .product-quantity {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .product-quantity input {
+    width: 50px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+
+  .delete-quantity-link {
+    margin-left: 10px;
+    font-size: 0.85rem;
+  }
+
+  .payment-summary {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .checkout-btn {
+    font-size: 1rem;
+    padding: 10px;
   }
 }
