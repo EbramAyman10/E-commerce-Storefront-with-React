@@ -1,9 +1,10 @@
-.navbar.color-bg{
+
+.navbar.color-bg {
   background-color: #f2f2f2 !important;
 }
 .left-section .navbar-brand {
   font-family: "sans-serif";
-  text-shadow: 5px 8px 8px rgba(0, 0, 0, 0.45); 
+  text-shadow: 5px 8px 8px rgba(0, 0, 0, 0.45);
   font-size: 2.5rem;
 }
 
@@ -16,14 +17,13 @@
   border-radius: 12px;
   padding: 8px 16px;
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.45);
-
 }
 
 .middle-section .nav-item {
   margin: auto;
   font-size: 1.4rem;
   text-shadow: 5px 8px 8px rgba(0, 0, 0, 0.3);
-} 
+}
 .middle-section .nav-link {
   position: relative;
   font-weight: 500;
@@ -85,7 +85,6 @@
 }
 
 .active-icon {
-  
   border-radius: 8px;
   transform: translateY(-3px);
 }
@@ -94,28 +93,39 @@
   color: #ffc107 !important;
 }
 
-
 @media (max-width: 400px) {
-  .right-section{
-    position: absolute;
+  .navbar-collapse-resp {
+    background-color: #eee;
+    padding-bottom: 10px;
+    border-radius: 12px;
+  }
+  .middle-section {
+    box-shadow: none;
+  }
+  .right-section {
+    margin-top: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    left: 15px;
-    top: 40px;
   }
-  
 }
 
-@media (min-width:401px) and (max-width: 990px) {
-  .right-section{
-    position: absolute;
+@media (min-width: 401px) and (max-width: 990px) {
+  .navbar-collapse-resp {
+    background-color: #eee;
+    padding-bottom: 10px;
+    border-radius: 12px;
+  }
+  .middle-section {
+    box-shadow: none;
+  }
+  .right-section {
+    margin-top: 20px;
     display: flex;
-    flex-direction: column;
+    gap: 50px;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    right: 30px;
-    top: 60px;
   }
 }
