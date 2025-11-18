@@ -16,6 +16,9 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedDown, setSelectedDown] = useState("Description");
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
   const sizes = ["39", "40", "41", "42", "43", "44", "45", "46", "47"];
   const colors = [0, 1, 2, 3];
 

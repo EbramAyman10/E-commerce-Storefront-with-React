@@ -1,9 +1,14 @@
-import './slideItems.css'
-import "../pages/Shop/ShopPage.css"
-import { Link } from "react-router-dom";
+import "./slideItems.css";
+import "../pages/Shop/ShopPage.css";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/slice/cartSlice";
+
 export default function SlideItem() {
+  const go = useNavigate();
+  const dispatch = useDispatch();
   const { products } = useProducts();
 
   const [slideIndex, setSlideIndex] = useState(0);
@@ -38,7 +43,13 @@ export default function SlideItem() {
         ❮
       </button>
       {apiGridProducts[slideIndex] && (
-        <div className="slide">
+        <div
+          className="slide"
+          onClick={() =>
+            go(`/productDetails/${apiGridProducts[slideIndex].id}`)
+          }
+          style={{ cursor: "pointer" }}
+        >
           <img
             src={apiGridProducts[slideIndex].image}
             alt={apiGridProducts[slideIndex].title}
@@ -51,9 +62,15 @@ export default function SlideItem() {
             <span className="discounted-price">${discountedPrice}</span>
           </p>
           <p className="offer">20% OFF</p>
-          <Link to={`/cart/${apiGridProducts[slideIndex].id}`} className="btn">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(addToCart(apiGridProducts[slideIndex]));
+            }}
+            className="btn"
+          >
             Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
-          </Link>
+          </button>
         </div>
       )}
       <button className="arrow right" onClick={nextSlide}>
