@@ -10,6 +10,7 @@ import Login from "./pages/Login/login";
 import SearchPage from "./pages/Search/search";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import ProductDetails from "./components/productDetails";
+import Login2 from "./pages/Login/Login2";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path="/women" element={<Women />} />
         <Route path="/kids" element={<Kids />} />
         <Route path="/collections" element={<Collections />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login2 />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/productDetails/:id" element={<ProductDetails />} />
 

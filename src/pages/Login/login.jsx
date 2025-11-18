@@ -11,7 +11,7 @@ export default function Login() {
     email: "",
     password: "",
     confirmPassword: "",
-    agree: false
+    agree: false,
   });
   const [error, setError] = useState("");
 
@@ -54,8 +54,11 @@ export default function Login() {
 
   return (
     <div className="login-page-container">
-      <div className={`login-content ${isLogin ? "login-active" : "signup-active"}`}>
-      
+      <div
+        className={`login-content ${
+          isLogin ? "login-active" : "signup-active"
+        }`}
+      >
         <div className="login-form">
           {isLogin ? (
             <>
@@ -65,19 +68,30 @@ export default function Login() {
                   type="email"
                   placeholder="Email"
                   value={loginData.email}
-                  onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                  onChange={(e) =>
+                    setLoginData({ ...loginData, email: e.target.value })
+                  }
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   value={loginData.password}
-                  onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                  onChange={(e) =>
+                    setLoginData({ ...loginData, password: e.target.value })
+                  }
                 />
                 <button type="submit">Login</button>
               </form>
               <p className="switch-text">
                 Don't have an account?{" "}
-                <span onClick={() => { setIsLogin(false); setError(""); }}>Sign Up</span>
+                <span
+                  onClick={() => {
+                    setIsLogin(false);
+                    setError("");
+                  }}
+                >
+                  Sign Up
+                </span>
               </p>
             </>
           ) : (
@@ -88,45 +102,64 @@ export default function Login() {
                   type="text"
                   placeholder="First Name"
                   value={signUpData.firstName}
-                  onChange={(e) => setSignUpData({ ...signUpData, firstName: e.target.value })}
+                  onChange={(e) =>
+                    setSignUpData({ ...signUpData, firstName: e.target.value })
+                  }
                 />
                 <input
                   type="text"
                   placeholder="Last Name"
                   value={signUpData.lastName}
-                  onChange={(e) => setSignUpData({ ...signUpData, lastName: e.target.value })}
+                  onChange={(e) =>
+                    setSignUpData({ ...signUpData, lastName: e.target.value })
+                  }
                 />
                 <input
                   type="email"
                   placeholder="Email"
                   value={signUpData.email}
-                  onChange={(e) => setSignUpData({ ...signUpData, email: e.target.value })}
+                  onChange={(e) =>
+                    setSignUpData({ ...signUpData, email: e.target.value })
+                  }
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   value={signUpData.password}
-                  onChange={(e) => setSignUpData({ ...signUpData, password: e.target.value })}
+                  onChange={(e) =>
+                    setSignUpData({ ...signUpData, password: e.target.value })
+                  }
                 />
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   value={signUpData.confirmPassword}
-                  onChange={(e) => setSignUpData({ ...signUpData, confirmPassword: e.target.value })}
+                  onChange={(e) =>
+                    setSignUpData({
+                      ...signUpData,
+                      confirmPassword: e.target.value,
+                    })
+                  }
                 />
-                
+
                 <button type="submit">Sign Up</button>
               </form>
               <p className="switch-text">
                 Already have an account?{" "}
-                <span onClick={() => { setIsLogin(true); setError(""); }}>Login</span>
+                <span
+                  onClick={() => {
+                    setIsLogin(true);
+                    setError("");
+                  }}
+                >
+                  Login
+                </span>
               </p>
             </>
           )}
           {error && <p className="error">{error}</p>}
         </div>
 
-        
         <div className="login-image">
           <img src={backgroundImg} alt="Illustration" />
         </div>
