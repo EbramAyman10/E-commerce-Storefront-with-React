@@ -11,13 +11,13 @@ body {
   margin: 0;
   padding: 0;
   overflow-y: unset;
-  background: #dcdcdc;
-  /* linear-gradient(
+  background: linear-gradient(
+    100deg,
     rgba(194, 196, 197, 1),
     rgba(219, 220, 221, 1),
     rgba(227, 230, 234, 1),
     rgba(200, 205, 213, 1)
-  ); */
+  );
 }
 
 .arrow {
@@ -35,7 +35,6 @@ body {
   cursor: pointer;
   z-index: 10;
 }
-
 
 .container {
   width: 100%;
