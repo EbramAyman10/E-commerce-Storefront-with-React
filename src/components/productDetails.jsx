@@ -4,8 +4,11 @@ import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
 import RenderStars from "./stars";
 import ProductCard from "./productCard";
-
+import { addToCart } from "../store/slice/cartSlice";
+import { useDispatch } from "react-redux";
 export default function ProductDetails() {
+  const dispatch = useDispatch();
+
   const { id } = useParams();
   const { products } = useProducts();
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -94,7 +97,12 @@ export default function ProductDetails() {
           </div>
 
           <div className="cart-actions">
-            <button className="btn">Add to Cart</button>
+            <button
+              className="btn"
+              onClick={() => dispatch(addToCart(product))}
+            >
+              Add to Cart
+            </button>
             <button className="heart">
               <i className="fa-regular fa-heart"></i>
             </button>

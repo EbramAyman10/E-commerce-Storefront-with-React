@@ -5,7 +5,6 @@ const userFromStorage = localStorage.getItem("user");
 export const userSlice = createSlice({
   name: "userSlice",
   initialState: {
-    user: userFromStorage ? JSON.parse(userFromStorage) : null,
     isLoggedIn: !!tokenFromStorage,
     token: tokenFromStorage || null,
     error: null,
