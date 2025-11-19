@@ -13,47 +13,51 @@ export default function CartPage() {
           <div className="empty-cart">There is nothing in your cart</div>
         ) : (
           <div className="checkout-grid">
-            {cartItems.map((cartItem) => (
-              <div className="cart-item" key={cartItem.id}>
-                <img className="product-image" src={cartItem.image} />
+            <div className="items">
+              {cartItems.map((cartItem) => (
+                <div className="cart-item" key={cartItem.id}>
+                  <img className="product-image" src={cartItem.image} />
 
-                <div className="cart-item-details">
-                  <div className="product-name">{cartItem.title}</div>
-                  <div className="product-price">${cartItem.price}</div>
+                  <div className="cart-item-details">
+                    <div className="product-name">{cartItem.title}</div>
+                    <div className="product-price">${cartItem.price}</div>
 
-                  <div className="product-quantity">
-                    <span>
-                      Quantity:{" "}
-                      <span className="quantity-label">
-                        {cartItem.quantity}
+                    <div className="product-quantity">
+                      <span>
+                        Quantity:{" "}
+                        <span className="quantity-label">
+                          {cartItem.quantity}
+                        </span>
                       </span>
-                    </span>
 
-                    <input
-                      type="number"
-                      value={cartItem.quantity}
-                      min="1"
-                      onChange={(e) =>
-                        dispatch(
-                          updateQuantity({
-                            id: cartItem.id,
-                            quantity: Number(e.target.value),
-                          })
-                        )
-                      }
-                    />
+                      <input
+                        type="number"
+                        value={cartItem.quantity}
+                        min="1"
+                        onChange={(e) =>
+                          dispatch(
+                            updateQuantity({
+                              id: cartItem.id,
+                              quantity: Number(e.target.value),
+                            })
+                          )
+                        }
+                      />
 
-                    <span
-                      className="delete-quantity-link link-primary"
-                      onClick={() => dispatch(removeFromCart(cartItem.id))}
-                    >
-                      Delete
-                    </span>
+                      <span
+                        className="delete-quantity-link link-primary"
+                        onClick={() => dispatch(removeFromCart(cartItem.id))}
+                      >
+                        Delete
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-            <PaymentSummary />
+              ))}
+            </div>
+            <div className="payment">
+              <PaymentSummary />
+            </div>
           </div>
         )}
       </div>

@@ -1,8 +1,7 @@
 /* Cart.css */
 .checkout-page {
-  max-width: 1200px;
-  margin: 50px auto;
-  padding: 0 20px;
+  margin: auto;
+  padding: 50px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -16,10 +15,21 @@
 
 .checkout-grid {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
 }
-
+.items{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.payment{
+  width: 40%;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+}
 .cart-item {
   display: flex;
   gap: 20px;
@@ -115,7 +125,6 @@
 
 .payment-summary {
   width: 100%;
-  max-width: 350px;
   background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
   padding: 25px 20px;
   margin-bottom: 20px;
@@ -123,7 +132,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -170,9 +179,20 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .checkout-grid{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .payment{
+    width: 100%;
+  }
+  .items{
+    text-align: center;
+  }
   .cart-item {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 10px;
     gap: 10px;
   }
