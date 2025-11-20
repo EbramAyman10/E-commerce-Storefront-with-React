@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
@@ -6,7 +6,10 @@ import RenderStars from "./stars";
 import ProductCard from "./productCard";
 import { addToCart } from "../store/slice/cartSlice";
 import { useDispatch } from "react-redux";
+import Toast from "./Toast";
 export default function ProductDetails() {
+  const [showToast, setShowToast] = useState(false);
+  const [heart, setHeart] = useState(false);
   const dispatch = useDispatch();
 
   const { id } = useParams();
@@ -102,13 +105,20 @@ export default function ProductDetails() {
           <div className="cart-actions">
             <button
               className="btn"
-              onClick={() => dispatch(addToCart(product))}
+              onClick={() => {
+                dispatch(addToCart(product));
+                setShowToast(true);
+              }}
             >
               Add to Cart
             </button>
-            <button className="heart">
-              <i className="fa-regular fa-heart"></i>
-            </button>
+            <span className="heart" onClick={() => setHeart(!heart)}>
+              {heart ? (
+                <i className="fa-solid fa-heart" style={{ color: "red" }}></i>
+              ) : (
+                <i className="fa-regular fa-heart"></i>
+              )}
+            </span>
           </div>
 
           <div className="delivery">
@@ -167,6 +177,11 @@ export default function ProductDetails() {
           ))}
         </div>
       </div>
+      <Toast
+        message="Added To Cart ✓"
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </>
   );
 }
