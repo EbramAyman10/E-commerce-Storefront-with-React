@@ -20,8 +20,10 @@ export default function ProductDetails() {
   const [selectedDown, setSelectedDown] = useState("Description");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const top = document.getElementById("product-top");
+    top?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [id]);
+
   const sizes = ["39", "40", "41", "42", "43", "44", "45", "46", "47"];
   const colors = [0, 1, 2, 3];
 
@@ -34,12 +36,11 @@ export default function ProductDetails() {
       setRelatedProducts(filtered);
     }
   }, [product, products]);
-
   if (!product) return <h2>Loading...</h2>;
 
   return (
     <>
-      <div className="cart-container row">
+      <div className="cart-container row" id="product-top">
         <div className="cart-images col-6">
           <div className="image-container">
             {" "}

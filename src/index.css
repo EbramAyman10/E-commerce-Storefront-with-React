@@ -1,11 +1,14 @@
-* {
+html,
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  height: auto;
+  width: 100%;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-body {
+  overflow-y: auto;
   background: linear-gradient(
+    100deg,
     rgba(194, 196, 197, 1),
     rgba(219, 220, 221, 1),
     rgba(227, 230, 234, 1),
