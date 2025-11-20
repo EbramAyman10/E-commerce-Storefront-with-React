@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
@@ -6,7 +6,10 @@ import RenderStars from "./stars";
 import ProductCard from "./productCard";
 import { addToCart } from "../store/slice/cartSlice";
 import { useDispatch } from "react-redux";
+import Toast from "./Toast";
 export default function ProductDetails() {
+  const [showToast, setShowToast] = useState(false);
+  const [heart, setHeart] = useState(false);
   const dispatch = useDispatch();
 
   const { id } = useParams();
@@ -17,8 +20,10 @@ export default function ProductDetails() {
   const [selectedDown, setSelectedDown] = useState("Description");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const top = document.getElementById("product-top");
+    top?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [id]);
+
   const sizes = ["39", "40", "41", "42", "43", "44", "45", "46", "47"];
   const colors = [0, 1, 2, 3];
 
@@ -31,12 +36,11 @@ export default function ProductDetails() {
       setRelatedProducts(filtered);
     }
   }, [product, products]);
-
   if (!product) return <h2>Loading...</h2>;
 
   return (
     <>
-      <div className="cart-container row">
+      <div className="cart-container row" id="product-top">
         <div className="cart-images col-6">
           <div className="image-container">
             {" "}
@@ -102,13 +106,20 @@ export default function ProductDetails() {
           <div className="cart-actions">
             <button
               className="btn"
-              onClick={() => dispatch(addToCart(product))}
+              onClick={() => {
+                dispatch(addToCart(product));
+                setShowToast(true);
+              }}
             >
               Add to Cart
             </button>
-            <button className="heart">
-              <i className="fa-regular fa-heart"></i>
-            </button>
+            <span className="heart" onClick={() => setHeart(!heart)}>
+              {heart ? (
+                <i className="fa-solid fa-heart" style={{ color: "red" }}></i>
+              ) : (
+                <i className="fa-regular fa-heart"></i>
+              )}
+            </span>
           </div>
 
           <div className="delivery">
@@ -167,6 +178,11 @@ export default function ProductDetails() {
           ))}
         </div>
       </div>
+      <Toast
+        message="Added To Cart ✓"
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </>
   );
 }
