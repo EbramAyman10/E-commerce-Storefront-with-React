@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../pages/Shop/ShopPage.css";
 
-
 export default function Navbar2({ onselectProduct, selectedProduct }) {
   const [open, setOpen] = useState(false);
 
@@ -13,31 +12,24 @@ export default function Navbar2({ onselectProduct, selectedProduct }) {
 
       <nav className={`shop-page ${open ? "open" : ""}`}>
         <button
-          className={selectedProduct === "latest" ? "active" : ""}
-          onClick={() => onselectProduct("latest")}
-        >
-          Latest
-        </button>
-
-        <button
-          className={selectedProduct === "suggested" ? "active" : ""}
-          onClick={() => onselectProduct("suggested")}
-        >
-          Suggested
-        </button>
-
-        <button
-          className={selectedProduct === "trending" ? "active" : ""}
-          onClick={() => onselectProduct("trending")}
-        >
-          Trending
-        </button>
-
-        <button
           className={selectedProduct === "newarrival" ? "active" : ""}
           onClick={() => onselectProduct("newarrival")}
         >
           New Arrival
+        </button>
+
+        <button
+          className={selectedProduct === "toprated" ? "active" : ""}
+          onClick={() => onselectProduct("toprated")}
+        >
+          Top Rated
+        </button>
+
+        <button
+          className={selectedProduct === "price" ? "active" : ""}
+          onClick={() => onselectProduct("price")}
+        >
+          Price
         </button>
       </nav>
     </>

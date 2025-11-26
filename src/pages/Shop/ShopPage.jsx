@@ -1,31 +1,12 @@
 import Navbar2 from "../../components/Navbar2";
 import "./ShopPage.css";
-import { useState } from "react";
 import { useProducts } from "../../context/ProductContext";
 import ProductCard from "../../components/productCard";
 import SlideItem from "../../components/slideItems";
 
 export default function ShopPage() {
-  const { products } = useProducts();
-
-  const [selectedProduct, setSelectedProduct] = useState("latest");
-
-  const filteredProducts = (() => {
-    switch (selectedProduct) {
-      case "latest":
-        return [...products].slice(-8);
-      case "suggested":
-        return [...products]
-          .sort((a, b) => b.rating.rate - a.rating.rate)
-          .slice(0, 8);
-      case "trending":
-        return [...products].sort((a, b) => b.price - a.price).slice(0, 8);
-      case "newarrival":
-        return [...products].slice(0, 8);
-      default:
-        return products.slice(0, 8);
-    }
-  })();
+  const { filteredProducts, selectedProduct, setSelectedProduct } =
+    useProducts();
 
   return (
     <>

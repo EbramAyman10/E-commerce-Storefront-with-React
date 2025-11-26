@@ -1,16 +1,29 @@
-
 import { useProducts } from "../../context/ProductContext";
 import ProductCard from "../../components/productCard";
-
+import Navbar2 from "../../components/Navbar2";
 export default function Men() {
-  const { products } = useProducts();
-
-  const menProducts = products.filter(
+  const { filteredProducts, selectedProduct, setSelectedProduct } =
+    useProducts();
+  const menProducts = filteredProducts.filter(
     (item) => item.category === "men's clothing"
   );
   return (
     <>
       <div className="container mt-5">
+        <div className="top-section ">
+          <div className="left-title">
+            <h3 className="mb-2 fs-2" id="top">
+              Men's Products
+            </h3>
+          </div>
+
+          <div className="right-navbar">
+            <Navbar2
+              onselectProduct={setSelectedProduct}
+              selectedProduct={selectedProduct}
+            />
+          </div>
+        </div>
         <div className="row g-4">
           {menProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

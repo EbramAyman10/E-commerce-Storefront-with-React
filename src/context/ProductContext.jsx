@@ -1,16 +1,25 @@
 import axios from "axios";
-import {
-  createContext,
-  useState,
-  useEffect,
-  Children,
-  useContext,
-} from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 const ProductContext = createContext();
 
-export function ProductProvider({children}) {
+export function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
+
+  const [selectedProduct, setSelectedProduct] = useState("newarrival");
+
+  const filteredProducts = (() => {
+    switch (selectedProduct) {
+      case "newarrival":
+        return [...products];
+      case "toprated":
+        return [...products].sort((a, b) => b.rating.rate - a.rating.rate);
+      case "price":
+        return [...products].sort((a, b) => b.price - a.price);
+      default:
+        return products;
+    }
+  })();
 
   useEffect(() => {
     async function fetchProducts() {
@@ -25,11 +34,14 @@ export function ProductProvider({children}) {
     }
     fetchProducts();
   }, []);
-
+  const value = {
+    products,
+    filteredProducts,
+    selectedProduct,
+    setSelectedProduct,
+  };
   return (
-    <ProductContext.Provider value={{products}}>
-      {children}
-    </ProductContext.Provider>
+    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
   );
 }
 
