@@ -12,6 +12,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import ProductDetails from "./components/productDetails";
 import Login2 from "./pages/Login/Login2";
 import CartPage from "./pages/Cart/Cart";
+import ContactPage from "./pages/contact/ContactPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/productDetails/:id" element={<ProductDetails />} />
+        <Route path="/contact" element={<ContactPage />} />
 
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
