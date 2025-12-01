@@ -1,11 +1,11 @@
 import { useEffectEvent, useRef } from "react";
-import "../pages/Login/login.css";
+import "../../pages/Login/login.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearError,
   signupFailure,
   signupSuccess,
-} from "../store/slice/userSlice";
+} from "../../store/slice/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 export default function SignUpForm() {

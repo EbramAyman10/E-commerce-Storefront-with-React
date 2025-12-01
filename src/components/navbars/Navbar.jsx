@@ -133,7 +133,7 @@ export default function Navbar() {
             </NavLink>
 
             <NavLink
-              to="/contact"
+              to="/about"
               className={({ isActive }) =>
                 isActive ? "icon-button active-icon" : "icon-button"
               }

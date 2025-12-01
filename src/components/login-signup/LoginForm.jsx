@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
-import "../pages/Login/login.css";
+import "../../pages/Login/login.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearError,
   loginFailure,
   loginSuccess,
-} from "../store/slice/userSlice";
+} from "../../store/slice/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {

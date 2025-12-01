@@ -1,4 +1,5 @@
-import Navbar2 from "../../components/Navbar2";
+import Navbar2 from "../../components/navbars/Navbar2";
+
 import "./ShopPage.css";
 import { useProducts } from "../../context/ProductContext";
 import ProductCard from "../../components/productCard";
