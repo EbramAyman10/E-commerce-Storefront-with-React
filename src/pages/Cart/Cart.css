@@ -16,10 +16,13 @@
 .checkout-grid {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   gap: 20px;
 }
 .items {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: center;
   gap: 20px;

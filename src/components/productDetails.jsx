@@ -1,16 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
 import RenderStars from "./stars";
 import ProductCard from "./productCard";
 import { addToCart } from "../store/slice/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
 export default function ProductDetails() {
   const [showToast, setShowToast] = useState(false);
   const [heart, setHeart] = useState(false);
   const dispatch = useDispatch();
+  const go = useNavigate();
 
   const { id } = useParams();
   const { products } = useProducts();
@@ -18,7 +19,7 @@ export default function ProductDetails() {
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedDown, setSelectedDown] = useState("Description");
-
+  const { isLoggedIn } = useSelector((state) => state.user);
   useEffect(() => {
     const top = document.getElementById("product-top");
     top?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -107,8 +108,13 @@ export default function ProductDetails() {
             <button
               className="btn"
               onClick={() => {
-                dispatch(addToCart(product));
-                setShowToast(true);
+                if (isLoggedIn) {
+                  dispatch(addToCart(product));
+                  setShowToast(true);
+                } else {
+                  go("/login");
+                  alert("Please log in to add items to your cart.");
+                }
               }}
             >
               Add to Cart

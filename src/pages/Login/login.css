@@ -1,6 +1,6 @@
+/* ====== Container ====== */
 .login-page-container {
   font-family: sans-serif;
-
   width: 100%;
   height: 100vh;
   display: flex;
@@ -8,6 +8,7 @@
   align-items: center;
 }
 
+/* ====== Main Content ====== */
 .login-content {
   width: 90%;
   max-width: 1000px;
@@ -22,10 +23,11 @@
   margin-top: -70px !important;
 }
 
+/* ====== Form & Image ====== */
 .login-form,
 .login-image {
   flex: 1;
-  transition: all 0.7s ease;
+  transition: all 0.7s ease, opacity 0.5s ease;
 }
 
 .login-form {
@@ -36,22 +38,35 @@
   color: #fff;
 }
 
+.login-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.login-image img {
+  width: 95%;
+  height: 95%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+/* ====== Form Active / Signup Active ====== */
 .login-content.login-active .login-form {
   left: 0;
 }
-
 .login-content.login-active .login-image {
   right: 0;
 }
-
 .login-content.signup-active .login-form {
-  left: 50%;
+  transform: translateX(85%);
 }
-
 .login-content.signup-active .login-image {
-  right: 50%;
+  transform: translateX(-120%);
 }
 
+/* ====== Headings & Inputs ====== */
 .login-form h2 {
   font-size: 2rem;
   margin-bottom: 25px;
@@ -80,6 +95,7 @@
   box-shadow: 0 0 8px #ffc107;
 }
 
+/* ====== Button ====== */
 .login-form button {
   width: 100%;
   padding: 12px;
@@ -99,6 +115,7 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 
+/* ====== Switch Text ====== */
 .switch-text {
   margin-top: 15px;
   text-align: center;
@@ -110,50 +127,57 @@
   font-weight: 700;
 }
 
+/* ====== Error ====== */
 .error {
   margin-top: 12px;
-  color: #ff4d4d;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.login-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.login-image img {
-  width: 95%;
-  height: 95%;
-  border-radius: 15px;
-  object-fit: cover;
-}
-
-.login-form,
-.login-image {
-  transition: all 0.7s ease, opacity 0.5s ease;
-}
-.login-content.signup-active .login-form {
-  transform: translateX(85%);
-}
-
-.login-content.signup-active .login-image {
-  transform: translateX(-120%);
-}
-.error {
   text-align: center;
   color: #ff4d4d;
   font-weight: 600;
   font-size: 0.95rem;
 }
 
+/* ====== Already Logged In ====== */
+.already-login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f6fa;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.already-login-container h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.already-login-container p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.logout-btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #574fd6;
+}
+
+/* ====== Responsive ====== */
 @media (max-width: 990px) {
   .login-page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 70px;
     height: auto;
   }
@@ -162,40 +186,17 @@
     height: auto;
     background-color: transparent;
     backdrop-filter: blur(5px);
-    border: 1 solid white;
+    border: 1px solid white;
     border-radius: 12px;
     padding: 8px 16px;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.45);
   }
-  .login-content h2 {
-    color: black;
-  }
-  .login-content input {
-    background-color: transparent;
-    color: black;
-    border: 1px solid white;
-    box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.45);
-  }
-  .login-content p {
-    color: black;
-  }
+  .login-content h2,
+  .login-content p,
   .login-content input::placeholder {
-    color: #000;
+    color: black;
     opacity: 1;
   }
-
-  .login-content input::-moz-placeholder {
-    color: #000;
-  }
-
-  .login-content input:-ms-input-placeholder {
-    color: #000;
-  }
-
-  .login-content input::-webkit-input-placeholder {
-    color: #000;
-  }
-
   .login-form,
   .login-image {
     flex: unset;
@@ -211,196 +212,19 @@
   }
 }
 
-/* شاشة ≤ 760px */
+/* دمج جميع الشاشات الصغيرة مع بعض */
 @media (max-width: 760px) {
-  .login-page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 70px;
-    height: auto;
-  }
-  .login-content {
-    flex-direction: column;
-    height: auto;
-    background-color: transparent;
-    backdrop-filter: blur(5px);
-    border: 1px solid white;
-    border-radius: 12px;
-    padding: 8px 16px;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.45);
-  }
-  .login-content h2 {
-    color: black;
-  }
   .login-content input {
     background-color: transparent;
     color: black;
     border: 1px solid white;
     box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.45);
-  }
-  .login-content p {
-    color: black;
-  }
-  .login-content input::placeholder {
-    color: #000;
-    opacity: 1;
-  }
-  .login-content input::-moz-placeholder {
-    color: #000;
-  }
-  .login-content input:-ms-input-placeholder {
-    color: #000;
-  }
-  .login-content input::-webkit-input-placeholder {
-    color: #000;
-  }
-
-  .login-form,
-  .login-image {
-    flex: unset;
-    width: 100%;
-    height: fit-content;
-    transform: translateX(0) !important;
-  }
-  .login-form {
-    padding: 30px 20px;
-  }
-  .login-content img {
-    display: none;
-  }
-}
-
-@media (max-width: 750px) {
-  .login-page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 70px;
-    height: auto;
-  }
-  .login-content {
-    flex-direction: column;
-    height: auto;
-    background-color: transparent;
-    backdrop-filter: blur(5px);
-    border: 1px solid white;
-    border-radius: 12px;
-    padding: 8px 16px;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.45);
-  }
-  .login-content h2 {
-    color: black;
-  }
-  .login-content input {
-    background-color: transparent;
-    color: black;
-    border: 1px solid white;
-    box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.45);
-  }
-  .login-content p {
-    color: black;
-  }
-  .login-content input::placeholder {
-    color: #000;
-    opacity: 1;
-  }
-  .login-content input::-moz-placeholder {
-    color: #000;
-  }
-  .login-content input:-ms-input-placeholder {
-    color: #000;
-  }
-  .login-content input::-webkit-input-placeholder {
-    color: #000;
-  }
-  .login-form,
-  .login-image {
-    flex: unset;
-    width: 100%;
-    height: fit-content;
-    transform: translateX(0) !important;
-  }
-  .login-form {
-    padding: 30px 20px;
-  }
-  .login-content img {
-    display: none;
   }
 }
 
 @media (max-width: 400px) {
   .login-page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 70px;
     height: auto;
-  }
-  .login-content {
-    flex-direction: column;
-    height: auto;
-    background-color: transparent;
-    backdrop-filter: blur(5px);
-    border: 1px solid white;
-    border-radius: 12px;
-    padding: 8px 16px;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.45);
-  }
-  .login-content h2 {
-    color: black;
-  }
-  .login-content input {
-    background-color: transparent;
-    color: black;
-    border: 1px solid white;
-    box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.45);
-  }
-  .login-content p {
-    color: black;
-  }
-  .login-content input::placeholder {
-    color: #000;
-    opacity: 1;
-  }
-  .login-content input::-moz-placeholder {
-    color: #000;
-  }
-  .login-content input:-ms-input-placeholder {
-    color: #000;
-  }
-  .login-content input::-webkit-input-placeholder {
-    color: #000;
-  }
-  .login-form,
-  .login-image {
-    flex: unset;
-    width: 100%;
-    height: fit-content;
-    transform: translateX(0) !important;
-  }
-  .login-form {
-    padding: 30px 20px;
-  }
-  .login-content img {
-    display: none;
-  }
-}
-
-@media (max-width: 900px) {
-  .error {
-    color: #ff4d4d !important;
-  }
-}
-
-@media (max-width: 760px) {
-  .error {
-    color: #ff4d4d !important;
-  }
-}
-
-@media (max-width: 400px) {
-  .error {
-    color: #ff4d4d !important;
   }
 }

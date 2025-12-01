@@ -3,11 +3,15 @@ import "./login.css";
 import backgroundImg from "./background.jpg";
 import LoginForm from "../../components/LoginForm";
 import SignUpForm from "../../components/SignUpForm";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/slice/userSlice";
 // import { useSelector } from "react-redux";
 // import { Navigate } from "react-router-dom";
 
 export default function Login2() {
   const [switchLogin, setSwitch] = useState(true);
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   /*
   لو اليوزر مسجل ميرحش علي اللوجين
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -15,7 +19,20 @@ export default function Login2() {
     return <Navigate to={"/shop"} replace />;
   }
     */
-  return (
+  return isLoggedIn ? (
+    <div className="already-login-container">
+      <h1>You are Already LoggedIn</h1>
+      <p>Welcome back! You are already logged in.</p>
+      <button
+        className="logout-btn"
+        onClick={() => {
+          dispatch(logout());
+        }}
+      >
+        Logout
+      </button>
+    </div>
+  ) : (
     <div className="login-page-container">
       <div
         className={`login-content ${

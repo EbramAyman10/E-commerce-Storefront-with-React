@@ -1,19 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(
-      rgba(194, 196, 197, 1),
-      rgba(219, 220, 221, 1),
-      rgba(227, 230, 234, 1),
-      rgba(200, 205, 213, 1)
-    );
+.home-container {
+  background-color: white;
 }
 
 .home-page {
@@ -50,10 +36,10 @@ body {
   margin: 0;
   letter-spacing: -2px;
   text-transform: capitalize;
-  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.40);
+  text-shadow: 3px 5px 6px rgba(0, 0, 0, 0.4);
 }
 
-.home-page  .btn {
+.home-page .btn {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-top: 2rem;
   padding: 15px 45px;
@@ -82,7 +68,7 @@ body {
 }
 
 .filled-star {
-  color: #ffc107; 
+  color: #ffc107;
   font-size: 18px;
 }
 
@@ -90,8 +76,6 @@ body {
   color: #ccc;
   font-size: 18px;
 }
-
-
 
 @media (max-width: 400px) {
   .home-page .hero-content {
@@ -121,7 +105,7 @@ body {
     font-size: 18px;
     font-weight: 500;
     background-color: transparent;
-     backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
     color: #000000;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -166,7 +150,7 @@ body {
     font-size: 18px;
     font-weight: 500;
     background-color: transparent;
-     backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
     color: #000000;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -199,4 +183,39 @@ body {
     left: 5%;
     max-width: 48%;
   }
+}
+
+.men-section {
+  height: 100vh;
+  margin-top: 40px;
+  padding: 0 20px;
+  background-image: url("../../assets/men.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.women-section {
+  height: 100vh;
+  margin-top: 40px;
+  padding: 0 20px;
+  background-image: url("../../assets/women.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.kids-section {
+  height: 100vh;
+  margin-top: 40px;
+  padding: 0 20px;
+  background-image: url("../../assets/kids.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.kids-header{
+  margin-top: 200px !important;
+  margin-right: 100px !important;
 }
