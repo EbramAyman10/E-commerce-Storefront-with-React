@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./productCard.css";
 import RenderStars from "./stars";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import Toast from "./Toast";
 export default function ProductCard({ product }) {
   const [added, setAdded] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const { isLoggedIn } = useSelector((state) => state.user);
   function addedtoCart() {
     setAdded(added ? false : true);
     setTimeout(() => {
@@ -46,9 +47,15 @@ export default function ProductCard({ product }) {
               className="btn"
               onClick={(e) => {
                 e.stopPropagation();
-                dispatch(addToCart(product));
-                addedtoCart();
-                setShowToast(true);
+
+                if (isLoggedIn) {
+                  dispatch(addToCart(product));
+                  addedtoCart();
+                  setShowToast(true);
+                } else {
+                  go("/login");
+                  alert("Please log in to add items to your cart.");
+                }
               }}
             >
               Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>

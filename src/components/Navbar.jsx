@@ -1,10 +1,12 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./navbar.css";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isSearch = location.pathname === "/search";
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   return (
     <nav
@@ -113,9 +115,18 @@ export default function Navbar() {
             </NavLink>
 
             <NavLink
-              to="/cart"
+              to={isLoggedIn ? "/cart" : "/login"}
               className={({ isActive }) =>
-                isActive ? "icon-button active-icon" : "icon-button"
+                isLoggedIn
+                  ? isActive
+                    ? "icon-button active-icon"
+                    : "icon-button"
+                  : "icon-button"
+              }
+              onClick={
+                isLoggedIn
+                  ? () => {}
+                  : () => alert("Login first to see your cart")
               }
             >
               <i className="fa-solid fa-cart-shopping icon"></i>

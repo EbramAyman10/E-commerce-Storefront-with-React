@@ -1,4 +1,4 @@
-import { useEffectEvent, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "../pages/Login/login.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ export default function LoginForm() {
   const emailRef = useRef(null);
   const passRef = useRef(null);
 
-  useEffectEvent(() => {
+  useEffect(() => {
     dispatch(clearError());
   }, [dispatch]);
 
@@ -25,23 +25,23 @@ export default function LoginForm() {
 
     const url = "https://dummyjson.com/auth/login";
     const data = {
-      email: emailRef.current.value,
+      username: emailRef.current.value,
       password: passRef.current.value,
     };
     try {
       const res = await axios.post(url, data);
 
-      if (res.data.token) {
-        dispatch(loginSuccess({ token: res.data.token, user: res.data }));
-        go("/shop", { replace: true });
-      } else dispatch(loginFailure("Invaild Username or Password"));
+      dispatch(loginSuccess({ token: res.data.token, user: res.data }));
+      go("/shop", { replace: true });
+      // if (res.data.token) {
+      // } else dispatch(loginFailure("Invaild Username or Password"));
     } catch (err) {
       dispatch(loginFailure("Something went wrong: " + err.message));
     }
   };
   return (
     <form onSubmit={handleLogin}>
-      <input type="email" placeholder="email" ref={emailRef} required />
+      <input type="text" placeholder="email" ref={emailRef} required />
       <input type="password" placeholder="Password" ref={passRef} required />
       <button type="submit">Login</button>
       {error && <p className="error">{error}</p>}
