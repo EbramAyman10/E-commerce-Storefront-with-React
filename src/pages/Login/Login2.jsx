@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./login.css";
 import backgroundImg from "./background.jpg";
-import LoginForm from "../../components/LoginForm";
-import SignUpForm from "../../components/SignUpForm";
+import LoginForm from "../../components/login-signup/LoginForm";
+import SignUpForm from "../../components/login-signup/SignUpForm";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slice/userSlice";
 // import { useSelector } from "react-redux";

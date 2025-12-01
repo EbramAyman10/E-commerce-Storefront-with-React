@@ -1,0 +1,106 @@
+.footer-container {
+  background-color: #1a1a1a; /* لون داكن عصري */
+  color: #f5f5f5; /* نص فاتح */
+  padding: 50px 20px 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.contact-form,
+.contact-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.contact-form h2,
+.contact-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #ffc107; /* لون العنوان */
+}
+
+.contact-form form input,
+.contact-form form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: #2c2c2c;
+  color: #f5f5f5;
+}
+
+.contact-form form input::placeholder,
+.contact-form form textarea::placeholder {
+  color: #aaa;
+}
+
+.contact-form form textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.contact-form form button {
+  padding: 12px 20px;
+  background-color: #ffc107; /* لون الزر */
+  color: #1a1a1a; /* لون النص داخل الزر */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contact-form form button:hover {
+  background-color: #e0a800; /* لون Hover */
+}
+
+.success-msg {
+  color: #4caf50;
+  margin-top: 10px;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #f5f5f5;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #f5f5f5;
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ffc107;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+}

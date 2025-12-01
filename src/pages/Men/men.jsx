@@ -1,6 +1,7 @@
 import { useProducts } from "../../context/ProductContext";
 import ProductCard from "../../components/productCard";
-import Navbar2 from "../../components/Navbar2";
+import Navbar2 from "../../components/navbars/Navbar2";
+
 export default function Men() {
   const { filteredProducts, selectedProduct, setSelectedProduct } =
     useProducts();

@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbars/Navbar";
 import ShopPage from "./pages/Shop/ShopPage";
 import Men from "./pages/Men/men";
 import Women from "./pages/Women/women";
@@ -12,7 +12,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import ProductDetails from "./components/productDetails";
 import Login2 from "./pages/Login/Login2";
 import CartPage from "./pages/Cart/Cart";
-import ContactPage from "./pages/contact/ContactPage";
+import AboutPage from "./pages/contact/AboutPage";
+import Footer from "./components/footer/footer";
 
 function App() {
   return (
@@ -29,10 +30,11 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/productDetails/:id" element={<ProductDetails />} />
-        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
 
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
+      <Footer />
     </>
   );
 }
