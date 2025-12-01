@@ -3,7 +3,7 @@ import "../pages/Shop/ShopPage.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductContext";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/slice/cartSlice";
 import Toast from "./Toast";
 
@@ -13,6 +13,7 @@ export default function SlideItem() {
   const go = useNavigate();
   const dispatch = useDispatch();
   const { products } = useProducts();
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   const [slideIndex, setSlideIndex] = useState(0);
 
@@ -69,8 +70,13 @@ export default function SlideItem() {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                dispatch(addToCart(apiGridProducts[slideIndex]));
-                setShowToast(true);
+                if (isLoggedIn) {
+                  dispatch(addToCart(apiGridProducts[slideIndex]));
+                  setShowToast(true);
+                } else {
+                  go("/login");
+                  alert("Please log in to add items to your cart.");
+                }
               }}
               className="btn"
             >

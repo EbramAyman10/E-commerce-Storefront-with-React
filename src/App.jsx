@@ -14,10 +14,12 @@ import Login2 from "./pages/Login/Login2";
 import CartPage from "./pages/Cart/Cart";
 import AboutPage from "./pages/contact/AboutPage";
 import Footer from "./components/footer/footer";
+import ScrollToTop from "./components/scrollToTop";
 
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
