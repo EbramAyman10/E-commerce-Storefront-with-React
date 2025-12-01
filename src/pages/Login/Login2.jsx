@@ -10,19 +10,17 @@ import { logout } from "../../store/slice/userSlice";
 
 export default function Login2() {
   const [switchLogin, setSwitch] = useState(true);
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  /*
-  لو اليوزر مسجل ميرحش علي اللوجين
-  const { isLoggedIn } = useSelector((state) => state.user);
-  if (isLoggedIn) {
-    return <Navigate to={"/shop"} replace />;
-  }
-    */
+
   return isLoggedIn ? (
-    <div className="already-login-container">
+    <div className="already-login-container ">
       <h1>You are Already LoggedIn</h1>
       <p>Welcome back! You are already logged in.</p>
+      <div className="container d-flex flex-column justify-content-center align-items-center">
+        <p className="mb-0">Username: {user.username}</p>
+        <p>email: {user.email}</p>
+      </div>
       <button
         className="logout-btn"
         onClick={() => {

@@ -133,6 +133,14 @@
   font-size: 1.5rem;
 }
 
+.tab-content {
+  height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
 .down-section {
   margin-top: 30px;
   padding: 15px;
