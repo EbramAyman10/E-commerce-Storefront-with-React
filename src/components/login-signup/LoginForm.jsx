@@ -8,7 +8,8 @@ import {
 } from "../../store/slice/userSlice";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/axios";
-
+import { clearCart } from "../../store/slice/cartSlice";
+import { syncGetCart } from "../../store/slice/cartAPI";
 export default function LoginForm() {
   const { error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ export default function LoginForm() {
 
       if (token && user) {
         dispatch(loginSuccess({ token, user }));
+        dispatch(clearCart());
+        dispatch(syncGetCart());
         go("/shop", { replace: true });
       } else dispatch(loginFailure("Invaild Username or Password"));
     } catch (err) {

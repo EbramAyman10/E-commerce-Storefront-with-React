@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setAuthToken } from "../../api/axios";
 
 const tokenFromStorage = localStorage.getItem("token");
 const userFromStorage = localStorage.getItem("user");
@@ -19,6 +20,7 @@ export const userSlice = createSlice({
       state.error = null;
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("user", JSON.stringify(action.payload.user));
+      setAuthToken(action.payload.token);
     },
     loginFailure: (state, action) => {
       state.error = action.payload;
@@ -47,6 +49,7 @@ export const userSlice = createSlice({
       state.isLoggedIn = false;
       localStorage.removeItem("token");
       localStorage.removeItem("user");
+      setAuthToken(null);
     },
     clearError: (state) => {
       state.error = null;

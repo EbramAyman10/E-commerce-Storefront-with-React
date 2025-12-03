@@ -5,8 +5,7 @@ import LoginForm from "../../components/login-signup/LoginForm";
 import SignUpForm from "../../components/login-signup/SignUpForm";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slice/userSlice";
-// import { useSelector } from "react-redux";
-// import { Navigate } from "react-router-dom";
+import { clearCart } from "../../store/slice/cartSlice";
 
 export default function Login2() {
   const [switchLogin, setSwitch] = useState(true);
@@ -26,6 +25,7 @@ export default function Login2() {
       <button
         className="logout-btn"
         onClick={() => {
+          dispatch(clearCart());
           dispatch(logout());
         }}
       >
