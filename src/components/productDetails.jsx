@@ -23,7 +23,7 @@ export default function ProductDetails() {
   const { isLoggedIn } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
 
-  const sizes = ["39", "40", "41", "42", "43", "44", "45", "46", "47"];
+  const sizes = ["XS", "S", "M", "L", "XL", "2XL"];
   const colors = [0, 1, 2, 3];
 
   const product = products.find((p) => p._id === id);
@@ -54,9 +54,6 @@ export default function ProductDetails() {
 
     if (newTotalQuantity > 0) {
       dispatch(syncAddToCart(product._id, newTotalQuantity));
-    }
-    if (e && e.stopPropagation) {
-      e.stopPropagation();
     }
     setShowToast(true);
   };

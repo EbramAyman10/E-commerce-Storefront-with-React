@@ -42,10 +42,6 @@ export default function ProductCard({ product }) {
     if (newTotalQuantity > 0) {
       dispatch(syncAddToCart(product._id, newTotalQuantity));
     }
-    if (e && e.stopPropagation) {
-      e.stopPropagation();
-    }
-
     addedtoCart();
     setShowToast(true);
   };

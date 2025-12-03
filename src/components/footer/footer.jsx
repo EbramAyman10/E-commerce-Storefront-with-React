@@ -17,7 +17,6 @@ export default function Footer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // هنا ممكن تضيف API call أو email service
     console.log("Form Data:", formData);
     setSubmitted(true);
     setFormData({ name: "", email: "", message: "" });
