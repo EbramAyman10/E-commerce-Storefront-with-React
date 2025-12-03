@@ -15,13 +15,14 @@ import CartPage from "./pages/Cart/Cart";
 import AboutPage from "./pages/contact/AboutPage";
 import Footer from "./components/footer/footer";
 import ScrollToTop from "./components/scrollToTop";
+import OrderPage from "./pages/order/Order";
 
 function App() {
   return (
     <>
       <ScrollToTop />
       <Navbar />
-      <Routes>
+      <Routes >
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/men" element={<Men />} />
@@ -30,6 +31,7 @@ function App() {
         {/* <Route path="/collections" element={<Collections />} /> */}
         <Route path="/login" element={<Login2 />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/order" element={<OrderPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/productDetails/:id" element={<ProductDetails />} />
         <Route path="/about" element={<AboutPage />} />
