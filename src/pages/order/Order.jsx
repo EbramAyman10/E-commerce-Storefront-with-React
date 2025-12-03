@@ -48,6 +48,7 @@ export default function OrderPage() {
         address: shippingInfo.address,
         products: cartItems.map((item) => ({
           productId: item._id,
+          name: item.name || item.title || "Unknown Product",
           quantity: item.quantity,
           price: item.price,
         })),
@@ -99,9 +100,17 @@ export default function OrderPage() {
                 Your order has been successfully placed. We will prepare and
                 ship it soon
               </p>
-              <p className="order-number">Order Number: **#123456**</p>
+              <p className="order-number">
+                {" "}
+                Order Number: <strong>#{Date.now()}</strong>
+              </p>
               <button
-                onClick={() => navigate("/shop")}
+                onClick={() => {
+                  setCurrentStep(1);
+                  setShippingInfo({});
+                  setPaymentMethod("cash");
+                  navigate("/shop");
+                }}
                 className="cta-button secondary"
               >
                 Return to Store

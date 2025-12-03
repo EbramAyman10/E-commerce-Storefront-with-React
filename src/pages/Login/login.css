@@ -226,3 +226,100 @@
     height: auto;
   }
 }
+.orders {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f5f7fa; /* خلفية فاتحة ومريحة للعين */
+  border-radius: 10px;
+}
+
+.orders h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* الحاوية الرئيسية للأوردرات */
+.orders ul {
+  display: flex;         
+  flex-wrap: wrap;       
+  gap: 15px;             
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* كل أوردر كارت مستقل */
+.orders li {
+  background-color: #ffffff; 
+  border: 1px solid #d1d8e0; 
+  border-radius: 10px;
+  padding: 15px;
+  width: 250px;              
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;    
+}
+
+.orders li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+/* عنوان الأوردر - الاسم */
+.orders li > strong {
+  font-size: 1.1rem;
+  color: #1a1a1a;   /* داكن لكن مريح */
+  margin-bottom: 8px;
+}
+
+/* السعر */
+.orders li p.price {
+  font-size: 1rem;
+  color: #2e8b57; /* أخضر هادئ */
+  margin: 4px 0;
+}
+
+/* الحالة */
+.orders li p.status {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.orders li p.status.pending {
+  color: #f0ad4e; /* أصفر / برتقالي */
+}
+
+.orders li p.status.shipped {
+  color: #5bc0de; /* أزرق فاتح */
+}
+
+.orders li p.status.delivered {
+  color: #28a745; /* أخضر */
+}
+
+.orders li p.status.cancelled {
+  color: #dc3545; /* أحمر */
+}
+
+/* المنتجات داخل الأوردر */
+.orders li ul {
+  margin-top: 10px;
+  padding-left: 15px;
+  list-style: disc;
+}
+
+.orders li ul li {
+  font-size: 0.9rem;
+  color: #555;   /* رمادي مريح للعين */
+  margin-bottom: 4px;
+}
+
+/* لا توجد أوردرات */
+.orders p.no-orders {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}
