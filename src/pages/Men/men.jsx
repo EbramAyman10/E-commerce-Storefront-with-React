@@ -6,7 +6,7 @@ export default function Men() {
   const { filteredProducts, selectedProduct, setSelectedProduct } =
     useProducts();
   const menProducts = filteredProducts.filter(
-    (item) => item.category === "men's clothing"
+    (item) => item.category === "men"
   );
   return (
     <>

@@ -2,11 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "./productCard.css";
 import RenderStars from "./stars";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from "../store/slice/cartSlice";
+import { addProductToCart } from "../store/slice/cartSlice";
 import { useState } from "react";
 import checkmark from "../assets/checkmark.png";
 import Toast from "./Toast";
-
 export default function ProductCard({ product }) {
   const [added, setAdded] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -19,11 +18,24 @@ export default function ProductCard({ product }) {
   }
   const go = useNavigate();
   const dispatch = useDispatch();
+
+  const handleAddToCart = async (e) => {
+    e.stopPropagation();
+    if (!isLoggedIn) {
+      go("/login");
+      alert("Please log in to add items to your cart.");
+      return;
+    }
+
+    dispatch(addProductToCart(product._id, 1));
+    addedtoCart();
+    setShowToast(true);
+  };
   return (
     <>
       <div
         className="col-12 col-md-6 col-lg-3"
-        onClick={() => go(`/productDetails/${product.id}`)}
+        onClick={() => go(`/productDetails/${product._id}`)}
         style={{ cursor: "pointer" }}
       >
         <div className="card h-100 shadow-sm">
@@ -43,21 +55,7 @@ export default function ProductCard({ product }) {
               <img src={checkmark} />
               Added
             </div>
-            <button
-              className="btn"
-              onClick={(e) => {
-                e.stopPropagation();
-
-                if (isLoggedIn) {
-                  dispatch(addToCart(product));
-                  addedtoCart();
-                  setShowToast(true);
-                } else {
-                  go("/login");
-                  alert("Please log in to add items to your cart.");
-                }
-              }}
-            >
+            <button className="btn" onClick={handleAddToCart}>
               Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
             </button>
           </div>

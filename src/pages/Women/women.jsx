@@ -6,7 +6,7 @@ export default function Women() {
   const { filteredProducts, selectedProduct, setSelectedProduct } =
     useProducts();
   const womenProducts = filteredProducts.filter(
-    (item) => item.category === "women's clothing"
+    (item) => item.category === "women"
   );
   return (
     <>

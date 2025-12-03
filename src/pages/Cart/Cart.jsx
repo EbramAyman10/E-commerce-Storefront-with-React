@@ -1,10 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import { updateQuantity, removeFromCart } from "../../store/slice/cartSlice";
+import {
+  fetchCart,
+  removeProductFromCart,
+  updateCartQuantity,
+} from "../../store/slice/cartSlice";
 import "./Cart.css";
 import PaymentSummary from "./paymentSummary";
+import { useEffect } from "react";
 export default function CartPage() {
-  const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  const { cartItems, loading, error } = useSelector((state) => state.cart);
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, [dispatch]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
+
   return (
     <div className="cart-item-details-grid">
       <div className="checkout-page">
@@ -34,19 +47,23 @@ export default function CartPage() {
                         type="number"
                         value={cartItem.quantity}
                         min="1"
-                        onChange={(e) =>
+                        onChange={(e) => {
+                          e.stopPropagation();
                           dispatch(
-                            updateQuantity({
-                              id: cartItem.id,
-                              quantity: Number(e.target.value),
-                            })
-                          )
-                        }
+                            updateCartQuantity(
+                              cartItem.id,
+                              Number(e.target.value)
+                            )
+                          );
+                        }}
                       />
 
                       <span
                         className="delete-quantity-link link-primary"
-                        onClick={() => dispatch(removeFromCart(cartItem.id))}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          dispatch(removeProductFromCart(cartItem.id));
+                        }}
                       >
                         Delete
                       </span>

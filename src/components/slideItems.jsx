@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductContext";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../store/slice/cartSlice";
+import { addProductToCart } from "../store/slice/cartSlice";
 import Toast from "./Toast";
 
 export default function SlideItem() {
@@ -41,6 +41,7 @@ export default function SlideItem() {
   const discountedPrice = currentProduct
     ? (currentProduct.price * 0.8).toFixed(2)
     : "0.00";
+
   return (
     <>
       <div className="top-slider">
@@ -71,7 +72,7 @@ export default function SlideItem() {
               onClick={(e) => {
                 e.stopPropagation();
                 if (isLoggedIn) {
-                  dispatch(addToCart(apiGridProducts[slideIndex]));
+                  dispatch(addProductToCart(currentProduct._id, 1));
                   setShowToast(true);
                 } else {
                   go("/login");

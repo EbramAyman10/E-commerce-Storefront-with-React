@@ -6,7 +6,7 @@ export default function Kids() {
   const { filteredProducts, selectedProduct, setSelectedProduct } =
     useProducts();
   const kidsProducts = filteredProducts.filter(
-    (item) => item.category === "kids' clothing"
+    (item) => item.category === "kids"
   );
   return (
     <>

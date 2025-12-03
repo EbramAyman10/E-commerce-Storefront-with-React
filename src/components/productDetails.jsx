@@ -4,7 +4,7 @@ import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
 import RenderStars from "./stars";
 import ProductCard from "./productCard";
-import { addToCart } from "../store/slice/cartSlice";
+import { addProductToCart } from "../store/slice/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
 export default function ProductDetails() {
@@ -24,13 +24,13 @@ export default function ProductDetails() {
   const sizes = ["39", "40", "41", "42", "43", "44", "45", "46", "47"];
   const colors = [0, 1, 2, 3];
 
-  const product = products.find((p) => p.id === Number(id));
+  const product = products.find((p) => p._id === id);
   useEffect(() => {
     if (product) {
       const filtered = products.filter(
-        (item) => item.category === product.category && item.id !== product.id
+        (item) => item.category === product.category && item.id !== product._id
       );
-      setRelatedProducts(filtered);
+      setRelatedProducts(filtered.slice(0, 8));
     }
   }, [product, products]);
   if (!product) return <h2>Loading...</h2>;
@@ -105,7 +105,7 @@ export default function ProductDetails() {
               className="btn"
               onClick={() => {
                 if (isLoggedIn) {
-                  dispatch(addToCart(product));
+                  dispatch(addProductToCart(product._id, 1));
                   setShowToast(true);
                 } else {
                   go("/login");

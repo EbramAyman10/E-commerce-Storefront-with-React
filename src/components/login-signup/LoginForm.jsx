@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import "../../pages/Login/login.css";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearError,
@@ -8,6 +7,7 @@ import {
   loginSuccess,
 } from "../../store/slice/userSlice";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/axios";
 
 export default function LoginForm() {
   const { error } = useSelector((state) => state.user);
@@ -23,25 +23,26 @@ export default function LoginForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const url = "https://dummyjson.com/auth/login";
     const data = {
-      username: emailRef.current.value,
+      email: emailRef.current.value,
       password: passRef.current.value,
     };
     try {
-      const res = await axios.post(url, data);
+      const res = await api.post("/auth/login", data);
+      const token = res.data?.token || null;
+      const user = res.data?.user || null;
 
-      dispatch(loginSuccess({ token: res.data.token, user: res.data }));
-      go("/shop", { replace: true });
-      // if (res.data.token) {
-      // } else dispatch(loginFailure("Invaild Username or Password"));
+      if (token && user) {
+        dispatch(loginSuccess({ token, user }));
+        go("/shop", { replace: true });
+      } else dispatch(loginFailure("Invaild Username or Password"));
     } catch (err) {
       dispatch(loginFailure("Something went wrong: " + err.message));
     }
   };
   return (
     <form onSubmit={handleLogin}>
-      <input type="text" placeholder="email" ref={emailRef} required />
+      <input type="email" placeholder="email" ref={emailRef} required />
       <input type="password" placeholder="Password" ref={passRef} required />
       <button type="submit">Login</button>
       {error && <p className="error">{error}</p>}

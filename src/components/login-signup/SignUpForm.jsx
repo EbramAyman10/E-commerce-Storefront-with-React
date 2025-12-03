@@ -1,4 +1,4 @@
-import { useEffectEvent, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "../../pages/Login/login.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,8 +6,8 @@ import {
   signupFailure,
   signupSuccess,
 } from "../../store/slice/userSlice";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/axios";
 export default function SignUpForm() {
   const dispatch = useDispatch();
   const go = useNavigate();
@@ -19,14 +19,13 @@ export default function SignUpForm() {
   const passRef = useRef(null);
   const confirmPassRef = useRef(null);
 
-  useEffectEvent(() => {
+  useEffect(() => {
     dispatch(clearError());
   }, [dispatch]);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    const url = "https://dummyjson.com/users/add";
-    const data = {
+    const data = {  
       firstName: fNameRef.current.value,
       lastName: lNameRef.current.value,
       email: emailRef.current.value,
@@ -38,7 +37,7 @@ export default function SignUpForm() {
       return;
     } else {
       try {
-        const res = await axios.post(url, data);
+        const res = await api.post("auth/register", data);
         dispatch(
           signupSuccess({ token: res.data.token || "token", user: res.data })
         );

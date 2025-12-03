@@ -1,5 +1,5 @@
-import axios from "axios";
 import { createContext, useState, useEffect, useContext } from "react";
+import api from "../api/axios";
 
 const ProductContext = createContext();
 
@@ -24,10 +24,8 @@ export function ProductProvider({ children }) {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await axios.get(
-          "https://fakestoreapi.com/products?limit=20"
-        );
-        setProducts(res.data);
+        const res = await api.get("/products");
+        setProducts(res.data.data);
       } catch (err) {
         console.log(err);
       }

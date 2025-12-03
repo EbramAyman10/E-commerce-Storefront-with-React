@@ -1,62 +1,100 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const saveToLocalStorage = (cartItems) => {
-  localStorage.setItem("cart", JSON.stringify(cartItems));
-};
+import api from "../../api/axios";
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    cartItems: JSON.parse(localStorage.getItem("cart")) || [],
+    cartItems: [],
     total: 0,
+    loading: false,
+    error: null,
   },
   reducers: {
-    addToCart: (state, action) => {
-      const item = action.payload;
-      const exist = state.cartItems.find((i) => i.id === item.id);
-
-      if (exist) exist.quantity += 1;
-      else state.cartItems.push({ ...item, quantity: 1 });
-
+    setCart: (state, action) => {
+      state.cartItems = action.payload;
       state.total = state.cartItems.reduce(
         (sum, i) => sum + i.price * i.quantity,
         0
       );
-
-      saveToLocalStorage(state.cartItems);
     },
-    removeFromCart: (state, action) => {
-      const id = action.payload;
-      state.cartItems = state.cartItems.filter((i) => i.id !== id);
-
-      state.total = state.cartItems.reduce(
-        (sum, i) => sum + i.price * i.quantity,
-        0
-      );
-
-      saveToLocalStorage(state.cartItems);
+    setError: (state, action) => {
+      state.error = action.payload;
     },
-    updateQuantity: (state, action) => {
-      const { id, quantity } = action.payload;
-      const item = state.cartItems.find((i) => i.id === id);
-      if (item) item.quantity = Math.max(quantity, 1);
-
-      state.total = state.cartItems.reduce(
-        (sum, i) => sum + i.price * i.quantity,
-        0
-      );
-
-      saveToLocalStorage(state.cartItems);
+    clearError: (state) => {
+      state.error = null;
     },
-    clearCart: (state) => {
-      state.cartItems = [];
-      state.total = 0;
-      localStorage.removeItem("cart");
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     },
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } =
-  cartSlice.actions;
+export const { setCart, setError, clearError, setLoading } = cartSlice.actions;
+
+// Fetch Cart
+export const fetchCart = () => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const token = localStorage.getItem("token");
+    const res = await api.get("/cart", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const products = res.data.data?.products?.map((p) => ({
+      id: p.productId._id,
+      title: p.productId.name,
+      image: p.productId.image,
+      price: p.productId.price,
+      quantity: p.quantity,
+    }));
+    dispatch(setCart(products));
+  } catch (err) {
+    dispatch(setError(err.response?.data?.message || err.message));
+  }
+  dispatch(setLoading(false));
+};
+
+// Add to Cart
+export const addProductToCart =
+  (productId, quantity = 1) =>
+  async (dispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      await api.post(
+        "/cart/add",
+        { productId, quantity },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      dispatch(fetchCart());
+    } catch (err) {
+      dispatch(setError(err.response?.data?.message || err.message));
+    }
+  };
+
+// Remove from Cart
+export const removeProductFromCart = (productId) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    await api.delete(`/cart/remove/${productId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    dispatch(fetchCart());
+  } catch (err) {
+    dispatch(setError(err.response?.data?.message || err.message));
+  }
+};
+// Update Quantity
+export const updateCartQuantity = (productId, quantity) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    await api.post(
+      "/cart/add",
+      { productId, quantity }, 
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    dispatch(fetchCart());
+  } catch (err) {
+    dispatch(setError(err.response?.data?.message || err.message));
+  }
+};
 
 export default cartSlice.reducer;
