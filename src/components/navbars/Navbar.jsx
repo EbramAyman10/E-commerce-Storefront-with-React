@@ -83,7 +83,7 @@ export default function Navbar() {
                 </NavLink>
               </li>
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <NavLink
                   to="/collections"
                   className={({ isActive }) =>
@@ -92,7 +92,7 @@ export default function Navbar() {
                 >
                   Collection
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="right-section d-flex">

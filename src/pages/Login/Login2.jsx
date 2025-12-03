@@ -18,9 +18,10 @@ export default function Login2() {
       <h1>You are Already LoggedIn</h1>
       <p>Welcome back! You are already logged in.</p>
       <div className="container d-flex flex-column justify-content-center align-items-center">
-        <p className="mb-0">Username: {user.username}</p>
-        <p></p>
-        <p>email: {user.email}</p>
+        <p className="mb-0">
+          Username: {user.firstName} {user.lastName}
+        </p>
+        <p>Email: {user.email}</p>
       </div>
       <button
         className="logout-btn"

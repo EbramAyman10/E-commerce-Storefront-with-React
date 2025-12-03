@@ -20,7 +20,7 @@ export default function Collections() {
 
         return (
           <div key={section.category} className="collection-block">
-            <h2 className="collection-title">{section.title}</h2>
+            <h2 className="collection-title">{section.name}</h2>
 
             <div className="row g-4">
               {filtered.map((product) => (

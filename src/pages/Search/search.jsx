@@ -8,7 +8,7 @@ export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (

@@ -27,7 +27,7 @@ function App() {
         <Route path="/men" element={<Men />} />
         <Route path="/women" element={<Women />} />
         <Route path="/kids" element={<Kids />} />
-        <Route path="/collections" element={<Collections />} />
+        {/* <Route path="/collections" element={<Collections />} /> */}
         <Route path="/login" element={<Login2 />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/search" element={<SearchPage />} />

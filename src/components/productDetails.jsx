@@ -4,9 +4,10 @@ import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
 import RenderStars from "./stars";
 import ProductCard from "./productCard";
-import { addProductToCart } from "../store/slice/cartSlice";
+import { addToCartLocal } from "../store/slice/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
+import { syncAddToCart } from "../store/slice/cartAPI";
 export default function ProductDetails() {
   const [showToast, setShowToast] = useState(false);
   const [heart, setHeart] = useState(false);
@@ -20,6 +21,7 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedDown, setSelectedDown] = useState("Description");
   const { isLoggedIn } = useSelector((state) => state.user);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const sizes = ["39", "40", "41", "42", "43", "44", "45", "46", "47"];
   const colors = [0, 1, 2, 3];
@@ -34,7 +36,30 @@ export default function ProductDetails() {
     }
   }, [product, products]);
   if (!product) return <h2>Loading...</h2>;
+  const handleAddToCart = async (e) => {
+    if (e && e.stopPropagation) {
+      e.stopPropagation();
+    }
+    if (!isLoggedIn) {
+      go("/login");
+      alert("Please log in to add items to your cart.");
+      return;
+    }
 
+    const existingItem = cartItems.find((i) => i._id === product._id);
+    const currentQuantity = existingItem ? existingItem.quantity : 0;
+    const newTotalQuantity = currentQuantity + 1;
+
+    dispatch(addToCartLocal(product));
+
+    if (newTotalQuantity > 0) {
+      dispatch(syncAddToCart(product._id, newTotalQuantity));
+    }
+    if (e && e.stopPropagation) {
+      e.stopPropagation();
+    }
+    setShowToast(true);
+  };
   return (
     <>
       <div className="cart-container row" id="product-top">
@@ -44,7 +69,7 @@ export default function ProductDetails() {
             <img
               className="main-image"
               src={product.image}
-              alt={product.title}
+              alt={product.name}
             />
           </div>
           <div className="image-row">
@@ -64,7 +89,7 @@ export default function ProductDetails() {
 
         <div className="cart-info col-6">
           <p className="company">{product.category}</p>
-          <h1 className="fs-3">{product.title}</h1>
+          <h1 className="fs-3">{product.name}</h1>
           <h1 className="stars">
             <RenderStars rating={product.rating.rate} />
           </h1>
@@ -101,18 +126,7 @@ export default function ProductDetails() {
           </div>
 
           <div className="cart-actions">
-            <button
-              className="btn"
-              onClick={() => {
-                if (isLoggedIn) {
-                  dispatch(addProductToCart(product._id, 1));
-                  setShowToast(true);
-                } else {
-                  go("/login");
-                  alert("Please log in to add items to your cart.");
-                }
-              }}
-            >
+            <button className="btn" onClick={(e) => handleAddToCart(e)}>
               Add to Cart
             </button>
             <span className="heart" onClick={() => setHeart(!heart)}>

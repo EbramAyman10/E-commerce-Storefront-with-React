@@ -1,100 +1,80 @@
 import { createSlice } from "@reduxjs/toolkit";
-import api from "../../api/axios";
+
+const initialState = {
+  cartItems: [],
+  total: 0,
+  lastAction: null,
+};
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    cartItems: [],
-    total: 0,
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
-    setCart: (state, action) => {
-      state.cartItems = action.payload;
+    setCartLocal: (state, action) => {
+      state.cartItems = action.payload.products.map((p) => ({
+        _id: p.productId._id,
+        name: p.productId.name,
+        price: p.productId.price,
+        image: p.productId.image,
+        quantity: p.quantity,
+      }));
+
       state.total = state.cartItems.reduce(
         (sum, i) => sum + i.price * i.quantity,
         0
       );
     },
-    setError: (state, action) => {
-      state.error = action.payload;
+    addToCartLocal: (state, action) => {
+      const item = state.cartItems.find((i) => i._id === action.payload._id);
+
+      if (item) {
+        item.quantity += action.payload.quantity || 1;
+      } else {
+        state.cartItems.push({ ...action.payload, quantity: 1 });
+      }
+
+      state.total = state.cartItems.reduce(
+        (sum, i) => sum + i.price * i.quantity,
+        0
+      );
     },
-    clearError: (state) => {
+
+    updateQuantityLocal: (state, action) => {
+      const item = state.cartItems.find((i) => i._id === action.payload.id);
+
+      if (item) item.quantity = action.payload.quantity;
+
+      state.total = state.cartItems.reduce(
+        (sum, i) => sum + i.price * i.quantity,
+        0
+      );
+      state.lastAction = {
+        type: "update",
+        _id: action.payload.id,
+        quantity: action.payload.quantity,
+      };
+    },
+    removeFromCartLocal: (state, action) => {
+      state.cartItems = state.cartItems.filter((i) => i._id !== action.payload);
+      state.total = state.cartItems.reduce(
+        (sum, i) => sum + i.price * i.quantity,
+        0
+      );
+    },
+    clearCart: (state) => {
+      state.cartItems = [];
+      state.total = 0;
       state.error = null;
-    },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
     },
   },
 });
 
-export const { setCart, setError, clearError, setLoading } = cartSlice.actions;
-
-// Fetch Cart
-export const fetchCart = () => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    const token = localStorage.getItem("token");
-    const res = await api.get("/cart", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const products = res.data.data?.products?.map((p) => ({
-      id: p.productId._id,
-      title: p.productId.name,
-      image: p.productId.image,
-      price: p.productId.price,
-      quantity: p.quantity,
-    }));
-    dispatch(setCart(products));
-  } catch (err) {
-    dispatch(setError(err.response?.data?.message || err.message));
-  }
-  dispatch(setLoading(false));
-};
-
-// Add to Cart
-export const addProductToCart =
-  (productId, quantity = 1) =>
-  async (dispatch) => {
-    try {
-      const token = localStorage.getItem("token");
-      await api.post(
-        "/cart/add",
-        { productId, quantity },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      dispatch(fetchCart());
-    } catch (err) {
-      dispatch(setError(err.response?.data?.message || err.message));
-    }
-  };
-
-// Remove from Cart
-export const removeProductFromCart = (productId) => async (dispatch) => {
-  try {
-    const token = localStorage.getItem("token");
-    await api.delete(`/cart/remove/${productId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    dispatch(fetchCart());
-  } catch (err) {
-    dispatch(setError(err.response?.data?.message || err.message));
-  }
-};
-// Update Quantity
-export const updateCartQuantity = (productId, quantity) => async (dispatch) => {
-  try {
-    const token = localStorage.getItem("token");
-    await api.post(
-      "/cart/add",
-      { productId, quantity }, 
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    dispatch(fetchCart());
-  } catch (err) {
-    dispatch(setError(err.response?.data?.message || err.message));
-  }
-};
+export const {
+  setCartLocal,
+  addToCartLocal,
+  updateQuantityLocal,
+  removeFromCartLocal,
+  clearCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -1,22 +1,36 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchCart,
-  removeProductFromCart,
-  updateCartQuantity,
+  removeFromCartLocal,
+  updateQuantityLocal,
 } from "../../store/slice/cartSlice";
+
 import "./Cart.css";
 import PaymentSummary from "./paymentSummary";
+import {
+  syncGetCart,
+  syncRemoveFromCart,
+  syncUpdateCartQuantity,
+} from "../../store/slice/cartAPI";
 import { useEffect } from "react";
+
 export default function CartPage() {
   const dispatch = useDispatch();
-
-  const { cartItems, loading, error } = useSelector((state) => state.cart);
+  const { cartItems } = useSelector((state) => state.cart);
+  const { isLoggedIn } = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(fetchCart());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(syncGetCart());
+    }
+  }, [dispatch, isLoggedIn]);
+  const handleRemove = (_id) => {
+    dispatch(removeFromCartLocal(_id));
+    dispatch(syncRemoveFromCart(_id));
+  };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
+  const handleUpdate = (_id, qty) => {
+    dispatch(updateQuantityLocal({ id: _id, quantity: qty }));
+    dispatch(syncUpdateCartQuantity(_id, qty));
+  };
 
   return (
     <div className="cart-item-details-grid">
@@ -28,11 +42,11 @@ export default function CartPage() {
           <div className="checkout-grid">
             <div className="items">
               {cartItems.map((cartItem) => (
-                <div className="cart-item" key={cartItem.id}>
+                <div className="cart-item" key={cartItem._id}>
                   <img className="product-image" src={cartItem.image} />
 
                   <div className="cart-item-details">
-                    <div className="product-name">{cartItem.title}</div>
+                    <div className="product-name">{cartItem.name}</div>
                     <div className="product-price">${cartItem.price}</div>
 
                     <div className="product-quantity">
@@ -49,12 +63,10 @@ export default function CartPage() {
                         min="1"
                         onChange={(e) => {
                           e.stopPropagation();
-                          dispatch(
-                            updateCartQuantity(
-                              cartItem.id,
-                              Number(e.target.value)
-                            )
-                          );
+                          const val = Number(e.target.value);
+                          if (val > 0) {
+                            handleUpdate(cartItem._id, val);
+                          }
                         }}
                       />
 
@@ -62,7 +74,7 @@ export default function CartPage() {
                         className="delete-quantity-link link-primary"
                         onClick={(e) => {
                           e.stopPropagation();
-                          dispatch(removeProductFromCart(cartItem.id));
+                          handleRemove(cartItem._id);
                         }}
                       >
                         Delete

@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductContext";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductToCart } from "../store/slice/cartSlice";
+import { addToCartLocal } from "../store/slice/cartSlice";
 import Toast from "./Toast";
+import { syncAddToCart } from "../store/slice/cartAPI";
 
 export default function SlideItem() {
   const [showToast, setShowToast] = useState(false);
@@ -14,6 +15,7 @@ export default function SlideItem() {
   const dispatch = useDispatch();
   const { products } = useProducts();
   const { isLoggedIn } = useSelector((state) => state.user);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const [slideIndex, setSlideIndex] = useState(0);
 
@@ -41,7 +43,31 @@ export default function SlideItem() {
   const discountedPrice = currentProduct
     ? (currentProduct.price * 0.8).toFixed(2)
     : "0.00";
+  const handleAddToCart = async (e) => {
+    if (e && e.stopPropagation) {
+      e.stopPropagation();
+    }
+    if (!isLoggedIn) {
+      go("/login");
+      alert("Please log in to add items to your cart.");
+      return;
+    }
 
+    const existingItem = cartItems.find((i) => i._id === currentProduct._id);
+    const currentQuantity = existingItem ? existingItem.quantity : 0;
+    const newTotalQuantity = currentQuantity + 1;
+
+    dispatch(addToCartLocal(currentProduct));
+
+    if (newTotalQuantity > 0) {
+      dispatch(syncAddToCart(currentProduct._id, newTotalQuantity));
+    }
+    if (e && e.stopPropagation) {
+      e.stopPropagation();
+    }
+
+    setShowToast(true);
+  };
   return (
     <>
       <div className="top-slider">
@@ -52,15 +78,15 @@ export default function SlideItem() {
           <div
             className="slide"
             onClick={() =>
-              go(`/productDetails/${apiGridProducts[slideIndex].id}`)
+              go(`/productDetails/${apiGridProducts[slideIndex]._id}`)
             }
             style={{ cursor: "pointer" }}
           >
             <img
               src={apiGridProducts[slideIndex].image}
-              alt={apiGridProducts[slideIndex].title}
+              alt={apiGridProducts[slideIndex].name}
             />
-            <h3>{apiGridProducts[slideIndex].title}</h3>
+            <h3>{apiGridProducts[slideIndex].name}</h3>
             <p className="price">
               <span className="original-price">
                 ${apiGridProducts[slideIndex].price.toFixed(2)}
@@ -68,19 +94,7 @@ export default function SlideItem() {
               <span className="discounted-price">${discountedPrice}</span>
             </p>
             <p className="offer">20% OFF</p>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (isLoggedIn) {
-                  dispatch(addProductToCart(currentProduct._id, 1));
-                  setShowToast(true);
-                } else {
-                  go("/login");
-                  alert("Please log in to add items to your cart.");
-                }
-              }}
-              className="btn"
-            >
+            <button onClick={(e) => handleAddToCart(e)} className="btn">
               Add to Cart <i className="fa-solid fa-cart-arrow-down"></i>
             </button>
           </div>
