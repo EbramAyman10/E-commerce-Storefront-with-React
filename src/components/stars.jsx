@@ -1,9 +1,10 @@
+import "./productCard.css";
 export default function RenderStars({rating}) {
   const totalStars = 5;
   const filledStars = Math.round(rating);
 
   return (
-    <div className="stars">
+    <div className="stars" >
       {[...Array(totalStars)].map((_, index) => (
         <i
           key={index}

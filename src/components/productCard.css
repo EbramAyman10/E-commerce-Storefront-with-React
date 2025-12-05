@@ -19,12 +19,14 @@
 }
 
 .card-img-top {
-  height: 220px;
+  height: 300px;
   object-fit: contain;
   padding: 10px;
   background: #fff;
 }
-
+.card img{
+  object-fit: fill;
+}
 .card-body {
   display: flex;
   flex-direction: column;
@@ -48,7 +50,7 @@
 }
 
 .card-text {
-  font-size: 14px !important;
+  font-size: 18px !important;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -61,8 +63,11 @@
 }
 
 .stars {
-  margin: 0px -15px;
+  display: flex;
+  gap: 5px;
+  
 }
+
 
 .filled-star {
   color: #ffd700;
@@ -73,7 +78,7 @@
 }
 
 .price {
-  font-size: 16px !important;
+  font-size: 25px !important;
   font-weight: bold;
   margin-top: auto;
   margin-bottom: 10px;
