@@ -16,29 +16,30 @@ import AboutPage from "./pages/contact/AboutPage";
 import Footer from "./components/footer/footer";
 import ScrollToTop from "./components/scrollToTop";
 import OrderPage from "./pages/order/Order";
+import MainLayout from "./MainLayout";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
     <>
-      <ScrollToTop />
-      <Navbar />
-      <Routes >
-        <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/men" element={<Men />} />
-        <Route path="/women" element={<Women />} />
-        <Route path="/kids" element={<Kids />} />
-        {/* <Route path="/collections" element={<Collections />} /> */}
-        <Route path="/login" element={<Login2 />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/productDetails/:id" element={<ProductDetails />} />
-        <Route path="/about" element={<AboutPage />} />
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/men" element={<Men />} />
+          <Route path="/women" element={<Women />} />
+          <Route path="/kids" element={<Kids />} />
+          {/* <Route path="/collections" element={<Collections />} /> */}
+          <Route path="/login" element={<Login2 />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/order" element={<OrderPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/productDetails/:id" element={<ProductDetails />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Route>
 
-        <Route path="*" element={<h1>404</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
     </>
   );
 }
