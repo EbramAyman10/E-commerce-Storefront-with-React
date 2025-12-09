@@ -4,10 +4,9 @@ import "./productDetails.css";
 import { useProducts } from "../context/ProductContext";
 import RenderStars from "./stars";
 import ProductCard from "./productCard";
-import { addToCartLocal } from "../store/slice/cartSlice";
+import { addToCart } from "../store/slice/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
-import { syncAddToCart } from "../store/slice/cartAPI";
 export default function ProductDetails() {
   const [showToast, setShowToast] = useState(false);
   const [heart, setHeart] = useState(false);
@@ -49,10 +48,8 @@ export default function ProductDetails() {
     const existingItem = cartItems.find((i) => i._id === product._id);
     const currentQuantity = existingItem ? existingItem.quantity : 0;
     const newTotalQuantity = currentQuantity + 1;
+    dispatch(addToCart({ _id: product._id, quantity: newTotalQuantity }));
 
-    dispatch(addToCartLocal(product));
-
-    dispatch(syncAddToCart(product._id, newTotalQuantity));
     setShowToast(true);
   };
   return (

@@ -8,8 +8,7 @@ import {
 } from "../../store/slice/userSlice";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/axios";
-import { clearCart } from "../../store/slice/cartSlice";
-import { syncGetCart } from "../../store/slice/cartAPI";
+import { clearCart, getCart } from "../../store/slice/cartSlice";
 export default function SignUpForm() {
   const dispatch = useDispatch();
   const go = useNavigate();
@@ -44,7 +43,7 @@ export default function SignUpForm() {
           signupSuccess({ token: res.data.token || "token", user: res.data })
         );
         dispatch(clearCart());
-        dispatch(syncGetCart());
+        dispatch(getCart());
         go("/shop", { replace: true });
       } catch (err) {
         dispatch(signupFailure("Something went wrong: " + err.message));

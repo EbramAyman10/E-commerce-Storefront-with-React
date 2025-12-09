@@ -3,6 +3,7 @@ import {
   getCart,
   removeFromCart,
   updateCartQuantity,
+  updateQuantityLocal,
 } from "../../store/slice/cartSlice";
 
 import "./Cart.css";
@@ -23,6 +24,7 @@ export default function CartPage() {
   };
 
   const handleUpdate = (_id, qty) => {
+    dispatch(updateQuantityLocal({ _id, quantity: qty }));
     dispatch(updateCartQuantity({ _id, quantity: qty }));
   };
 

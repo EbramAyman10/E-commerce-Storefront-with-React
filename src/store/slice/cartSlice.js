@@ -17,8 +17,8 @@ export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async ({ _id, quantity }, thunkAPI) => {
     try {
-      await api.post("/cart/add", { productId: _id, quantity });
-      return { _id, quantity };
+      const res = await api.post("/cart/add", { productId: _id, quantity });
+      return res.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue("Failed to add to cart", err);
     }
@@ -41,8 +41,8 @@ export const updateCartQuantity = createAsyncThunk(
   "cart/updateCartQuantity",
   async ({ _id, quantity }, thunkAPI) => {
     try {
-      await api.post("/cart/add", { productId: _id, quantity });
-      return { _id, quantity };
+      const res = await api.post("/cart/add", { productId: _id, quantity });
+      return res.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue("Failed to update quantity", err);
     }
@@ -61,6 +61,14 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    updateQuantityLocal: (state, action) => {
+      const item = state.cartItems.find((i) => i._id === action.payload._id);
+      if (item) item.quantity = action.payload.quantity;
+      state.total = state.cartItems.reduce(
+        (sum, i) => sum + i.price * i.quantity,
+        0
+      );
+    },
     clearCart: (state) => {
       state.cartItems = [];
       state.total = 0;
@@ -95,11 +103,20 @@ const cartSlice = createSlice({
 
       //add to cart
       .addCase(addToCart.fulfilled, (state, action) => {
-        const item = state.cartItems.find((i) => i._id === action.payload._id);
+        const newItem = action.payload.products[0];
+        const item = state.cartItems.find(
+          (i) => i._id === newItem.productId._id
+        );
         if (item) {
-          item.quantity += action.payload.quantity;
+          item.quantity += newItem.quantity;
         } else {
-          state.cartItems.push({ ...action.payload });
+          state.cartItems.push({
+            _id: newItem.productId._id,
+            name: newItem.productId.name,
+            price: newItem.productId.price,
+            image: newItem.productId.image,
+            quantity: newItem.quantity,
+          });
         }
         state.total = state.cartItems.reduce(
           (sum, i) => sum + i.price * i.quantity,
@@ -126,10 +143,14 @@ const cartSlice = createSlice({
 
       //update quantity
       .addCase(updateCartQuantity.fulfilled, (state, action) => {
-        const item = state.cartItems.find((i) => i._id === action.payload._id);
+        const updatedItem = action.payload.products[0];
+        const item = state.cartItems.find(
+          (i) => i._id === updatedItem.productId._id
+        );
         if (item) {
-          item.quantity = action.payload.quantity;
+          item.quantity = updatedItem.quantity;
         }
+
         state.total = state.cartItems.reduce(
           (sum, i) => sum + i.price * i.quantity,
           0
@@ -141,5 +162,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { clearCart } = cartSlice.actions;
+export const { clearCart,updateQuantityLocal } = cartSlice.actions;
 export default cartSlice.reducer;

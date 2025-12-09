@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductContext";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCartLocal } from "../store/slice/cartSlice";
+import { addToCart } from "../store/slice/cartSlice";
 import Toast from "./Toast";
-import { syncAddToCart } from "../store/slice/cartAPI";
 
 export default function SlideItem() {
   const [showToast, setShowToast] = useState(false);
@@ -57,11 +56,10 @@ export default function SlideItem() {
     const currentQuantity = existingItem ? existingItem.quantity : 0;
     const newTotalQuantity = currentQuantity + 1;
 
-    dispatch(addToCartLocal(currentProduct));
+    dispatch(
+      addToCart({ _id: currentProduct._id, quantity: newTotalQuantity })
+    );
 
-    if (newTotalQuantity > 0) {
-      dispatch(syncAddToCart(currentProduct._id, newTotalQuantity));
-    }
     if (e && e.stopPropagation) {
       e.stopPropagation();
     }
