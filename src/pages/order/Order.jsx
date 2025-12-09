@@ -16,7 +16,6 @@ export default function OrderPage() {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [shippingInfo, setShippingInfo] = useState({});
-  const [paymentMethod, setPaymentMethod] = useState("cash");
   const { user, token } = useSelector((state) => state.user);
   const SUB_TOTAL = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -88,7 +87,6 @@ export default function OrderPage() {
           {currentStep === 2 && (
             <PaymentOptions
               finalTotal={FINAL_TOTAL.toFixed(2)}
-              setPaymentMethod={setPaymentMethod}
               onPlaceOrder={handlePlaceOrder}
             />
           )}
@@ -108,7 +106,6 @@ export default function OrderPage() {
                 onClick={() => {
                   setCurrentStep(1);
                   setShippingInfo({});
-                  setPaymentMethod("cash");
                   navigate("/shop");
                 }}
                 className="cta-button secondary"

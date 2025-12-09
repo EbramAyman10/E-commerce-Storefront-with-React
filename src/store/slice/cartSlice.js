@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   cartItems: [],
   total: 0,
-  lastAction: null,
+
 };
 
 const cartSlice = createSlice({
@@ -48,11 +48,7 @@ const cartSlice = createSlice({
         (sum, i) => sum + i.price * i.quantity,
         0
       );
-      state.lastAction = {
-        type: "update",
-        _id: action.payload.id,
-        quantity: action.payload.quantity,
-      };
+    
     },
     removeFromCartLocal: (state, action) => {
       state.cartItems = state.cartItems.filter((i) => i._id !== action.payload);
