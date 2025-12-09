@@ -2,11 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "./productCard.css";
 import RenderStars from "./stars";
 import { useNavigate } from "react-router-dom";
-import { addToCartLocal } from "../store/slice/cartSlice";
+import { addToCart } from "../store/slice/cartSlice";
 import { useState } from "react";
 import checkmark from "../assets/checkmark.png";
 import Toast from "./Toast";
-import { syncAddToCart } from "../store/slice/cartAPI";
 
 export default function ProductCard({ product }) {
   const [added, setAdded] = useState(false);
@@ -37,9 +36,7 @@ export default function ProductCard({ product }) {
     const currentQuantity = existingItem ? existingItem.quantity : 0;
     const newTotalQuantity = currentQuantity + 1;
 
-    dispatch(addToCartLocal(product));
-
-    dispatch(syncAddToCart(product._id, newTotalQuantity));
+    dispatch(addToCart({ _id: product._id, quantity: newTotalQuantity }));
 
     addedtoCart();
     setShowToast(true);
