@@ -52,9 +52,7 @@ export default function ProductDetails() {
 
     dispatch(addToCartLocal(product));
 
-    if (newTotalQuantity > 0) {
-      dispatch(syncAddToCart(product._id, newTotalQuantity));
-    }
+    dispatch(syncAddToCart(product._id, newTotalQuantity));
     setShowToast(true);
   };
   return (

@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
     }, 2000);
   }
 
-  const handleAddToCart = async (e) => {
+  const handleAddToCart = (e) => {
     if (e && e.stopPropagation) {
       e.stopPropagation();
     }
@@ -39,9 +39,8 @@ export default function ProductCard({ product }) {
 
     dispatch(addToCartLocal(product));
 
-    if (newTotalQuantity > 0) {
-      dispatch(syncAddToCart(product._id, newTotalQuantity));
-    }
+    dispatch(syncAddToCart(product._id, newTotalQuantity));
+
     addedtoCart();
     setShowToast(true);
   };
