@@ -1,16 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  removeFromCartLocal,
-  updateQuantityLocal,
+  getCart,
+  removeFromCart,
+  updateCartQuantity,
 } from "../../store/slice/cartSlice";
 
 import "./Cart.css";
 import PaymentSummary from "./paymentSummary";
-import {
-  syncGetCart,
-  syncRemoveFromCart,
-  syncUpdateCartQuantity,
-} from "../../store/slice/cartAPI";
 import { useEffect } from "react";
 
 export default function CartPage() {
@@ -19,17 +15,15 @@ export default function CartPage() {
   const { isLoggedIn } = useSelector((state) => state.user);
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(syncGetCart());
+      dispatch(getCart());
     }
   }, [dispatch, isLoggedIn]);
   const handleRemove = (_id) => {
-    dispatch(removeFromCartLocal(_id));
-    dispatch(syncRemoveFromCart(_id));
+    dispatch(removeFromCart(_id));
   };
 
   const handleUpdate = (_id, qty) => {
-    dispatch(updateQuantityLocal({ id: _id, quantity: qty }));
-    dispatch(syncUpdateCartQuantity(_id, qty));
+    dispatch(updateCartQuantity({ _id, quantity: qty }));
   };
 
   return (
